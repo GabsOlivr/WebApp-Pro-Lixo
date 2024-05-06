@@ -3,7 +3,7 @@
     require("conexao.php");
     require("usrclass.php");
 
-    //if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['entrar'])) {
+    
     if($_SERVER['REQUEST_METHOD']=="POST"){
 
         $usremail=$_POST['usremail'];
