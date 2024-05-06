@@ -26,7 +26,7 @@ $nome = $usu_obj->primeiroNome();
         <div class="form complete-registration">
             <header> <?php echo $nome; ?>, Conte mais sobre você</header>
             <form id="completaRegistr0" action="BackCompletaRegistro.php" method="POST">
-            <label> Informe seu número de celular</label>
+            <label> Qual seu número de celular</label>
                 <input type="text" id="celular" name="celular" placeholder="(xx) xxxxx-xxxx" required pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}">
                 <label> Como pretende usar este sistema? </label>
                 <select id="tipoUser" name="tipoUser">
