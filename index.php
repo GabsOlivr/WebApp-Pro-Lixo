@@ -43,8 +43,8 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./index.html" title="">Home</a></li>
-            <li><a href="./components.html" title="">Componentes</a></li>
+            <!-- <li><a href="./index.php" title="">Home</a></li> -->
+            <!-- <li><a href="./components.html" title="">Componentes</a></li> -->
             <li>
               <p>
                 <a href="./loginRegister.php" class="btn btn-default navbar-btn" title="">Login/Sing Up</a>
