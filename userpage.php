@@ -4,6 +4,8 @@ require("usrclass.php");
 session_start();
 if (isset($_SESSION['usr_obj'])){
     $usu_obj = unserialize($_SESSION['usr_obj']);
+    if($usu_obj->usuCell == '00000000000')
+        header("location: completeRegister.php");
 }
 else {
     //Esse echo agora funciona, mas pra isso o redirecionamento teve que mudar
