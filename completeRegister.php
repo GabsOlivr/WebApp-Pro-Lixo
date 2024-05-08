@@ -11,6 +11,10 @@ else {
 $nome = $usu_obj->primeiroNome();
 
 $icone = 'Escolha seu ícone';
+
+if(isset($_POST['icona']))
+    $icone = $_POST['icona'];
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +43,7 @@ $icone = 'Escolha seu ícone';
                 </select>
                 <label> Que tal um Ícone? </label>
                 <br>
-                <button type="button" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?php echo $icone; ?> </button>
+                <button type="button" id="iconeSelect" name="iconeSelect" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?php echo $icone; ?> </button>
 
                 <!-- <select id="iconeSelect" name="iconeSelect">
                     <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
@@ -66,7 +70,14 @@ $icone = 'Escolha seu ícone';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                    Conteúdo do modal aqui...
+                    <form id="iconType" method="POST">
+                        <input type="submit" name="icona" value="Icone tipo A">
+                        <input type="submit" name="icona" value="Icone tipo B">
+                        <input type="submit" name="icona" value="Icone tipo C">
+                        <!-- <input type="image" name="icona" value="Icone tipo A" src="assets\images\iconsRegister\iconOpt1.png" alt="Submit" width="60" height="60">
+                        <input type="image" name="icona" value="Icone tipo B" src="assets\images\iconsRegister\iconOpt2.png" alt="Submit" width="60" height="60">
+                        <input type="image" name="icona" value="Icone tipo C" src="assets\images\iconsRegister\iconOpt3.png" alt="Submit" width="60" height="60"> -->
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
