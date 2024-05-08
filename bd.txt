@@ -1,0 +1,48 @@
+create database prolixo;
+
+use prolixo;
+
+create table usr_usuario(
+usr_id int primary key auto_increment not null,
+usr_nome varchar(100) not null,
+usr_celular varchar(12),
+usr_email varchar(50) not null,
+usr_senha varchar(100) not null,
+usr_icone varchar(25), -- define qual ícone o perfil usa, o próprio sistema fornece os ícones.
+usr_tipo tinyint not null -- diferencia o tipo de usuário, seja solicitante ou coletor.
+);
+
+create table end_endereco(
+end_id int primary key auto_increment not null,
+end_completo varchar(150) not null,
+end_latitude double,
+end_longitude double
+);
+
+create table slc_solicitacao(
+slc_id int primary key auto_increment not null,
+slc_materiais varchar(45) not null,
+slc_quantidade int not null,
+slc_status tinyint not null,
+slc_data datetime
+);
+
+alter table end_endereco
+add column usr_id int,
+add foreign key (usr_id) references usr_usuario(usr_id)
+on update cascade
+on delete cascade;
+
+alter table slc_solicitacao
+add column end_id int,
+add foreign key (end_id) references end_endereco(end_id)
+on update cascade
+on delete cascade;
+
+ select * from usr_usuario;
+-- select * from end_endereco;
+-- select * from slc_solicitacao;
+-- drop database prolixo;
+
+-- INSERT INTO usr_usuario VALUES (0, 'ualbaX', '12982727101', 'shaolinmatadordeporco@gmail.com', 'umkilomorreu', 'http://localhost/', 0);
+-- select usr_senha from usr_usuario where usr_email = '0gabrielsilvino@gmail.com';
