@@ -9,6 +9,8 @@ else {
 }
 //Detalhe: Isso aqui é só pra colocar o primeiro nome alí no cabeçalho, é frescura, mas é legal
 $nome = $usu_obj->primeiroNome();
+
+$icone = 'Escolha seu ícone';
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +39,7 @@ $nome = $usu_obj->primeiroNome();
                 </select>
                 <label> Que tal um Ícone? </label>
                 <br>
-                <button type="button" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">Escolha um ícone</button>
+                <button type="button" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?php echo $icone; ?> </button>
 
                 <!-- <select id="iconeSelect" name="iconeSelect">
                     <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
