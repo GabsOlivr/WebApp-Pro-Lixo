@@ -74,6 +74,25 @@ body {
     background-color: #cecece;
 }
 
+.btnIcon {
+    height: 60px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btnIcon:hover {
+    background-color: #cecece;
+}
+
 .form label{
     font-size: 16px;
     font-weight: 400;

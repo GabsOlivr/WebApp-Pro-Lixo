@@ -19,6 +19,8 @@ $nome = $usu_obj->primeiroNome();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Registration</title>
     <link rel="stylesheet" href="./assets/css/registerStyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
 </head>
 
 <body>
@@ -34,11 +36,15 @@ $nome = $usu_obj->primeiroNome();
                     <option value="1">Para coletar resíduos</option>
                 </select>
                 <label> Que tal um Ícone? </label>
-                <select id="iconeSelect" name="iconeSelect">
+                <br>
+                <button type="button" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">Escolha um ícone</button>
+
+                <!-- <select id="iconeSelect" name="iconeSelect">
                     <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
                     <option value="assets\\images\\iconsRegister\\iconOpt2.png">Ícone B</option>
                     <option value="assets\\images\\iconsRegister\\iconOpt3.png">Ícone C</option>
-                </select>
+                </select> -->
+                
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço ou CEP de sua residência? </label>
                 <input type="text" id="end" name="end" placeholder="Endereço ou CEP">
@@ -48,6 +54,28 @@ $nome = $usu_obj->primeiroNome();
             </form>
         </div>
     </section>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Título do Modal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Conteúdo do modal aqui...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- script bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
         // Function to format phone number input
