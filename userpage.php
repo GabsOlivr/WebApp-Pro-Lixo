@@ -35,6 +35,9 @@ else {
         <input type="submit" value="Sair" name="bt1">
     </form>
 
+    <img style="width: 300px; height: 300px;" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" >
+    
+
 </body>
 </html>
 

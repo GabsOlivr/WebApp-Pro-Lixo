@@ -1,3 +1,17 @@
+<?php
+
+require("usrclass.php");
+
+session_start();
+if (isset($_SESSION['usr_obj'])){
+    header("location: userpage.php");
+}
+else {
+    
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +26,7 @@
     <section class="wrapper">
         <div class="form signup">
             <header>Registrar</header>
-            <form id="signupForm" action="BackCadastro.php" method="POST"> <!-- Alteração no método de envio para POST -->
+            <form id="signupForm" action="BackCadastro.php" method="POST"> 
                 <input type="text" id="name" name="name" placeholder="Nome Completo" required />                                
                 <span id="nameError" class="error" style="color: #fff;"></span>                
                 <input type="text" id="email" name="email" placeholder="E-mail" required />

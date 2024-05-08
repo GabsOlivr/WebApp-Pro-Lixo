@@ -35,9 +35,9 @@ $nome = $usu_obj->primeiroNome();
                 </select>
                 <label> Que tal um Ícone? </label>
                 <select id="iconeSelect" name="iconeSelect">
-                    <option value="optionA">Ícone A</option>
-                    <option value="optionB">Ícone B</option>
-                    <option value="optionC">Ícone C</option>
+                    <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
+                    <option value="assets\\images\\iconsRegister\\iconOpt2.png">Ícone B</option>
+                    <option value="assets\\images\\iconsRegister\\iconOpt3.png">Ícone C</option>
                 </select>
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço ou CEP de sua residência? </label>
