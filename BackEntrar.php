@@ -52,7 +52,7 @@
                     }else{                  
                         session_start();
                         $_SESSION['usr_obj'] = serialize($obj);
-                        header("location: userpage.php");
+                        header("location: userpageSolicitante.php");
                     }
                     
                 } else {

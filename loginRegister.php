@@ -4,7 +4,7 @@ require("usrclass.php");
 
 session_start();
 if (isset($_SESSION['usr_obj'])){
-    header("location: userpage.php");
+    header("location: userpageSolicitante.php");
 }
 else {
     

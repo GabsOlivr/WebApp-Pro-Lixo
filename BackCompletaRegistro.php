@@ -34,7 +34,7 @@
                 $usu_obj->usuTipo = $linha['usr_tipo'];
             }
             $_SESSION['usr_obj'] = serialize($usu_obj);
-            header("location: userpage.php");
+            header("location: userpageSolicitante.php");
 
         } catch (PDOException $erro) {
             echo "
