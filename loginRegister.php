@@ -4,7 +4,13 @@ require("usrclass.php");
 
 session_start();
 if (isset($_SESSION['usr_obj'])){
-    header("location: userpageSolicitante.php");
+    $usu_obj = unserialize($_SESSION['usr_obj']);
+    if( $usu_obj->usuTipo == 0){
+        header("location: userpageSolicitante.php");
+    }else{
+        header("location: userpageColetor.php");
+    }
+    
 }
 else {
     

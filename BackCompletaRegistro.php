@@ -34,7 +34,11 @@
                 $usu_obj->usuTipo = $linha['usr_tipo'];
             }
             $_SESSION['usr_obj'] = serialize($usu_obj);
-            header("location: userpageSolicitante.php");
+            if( $usu_obj->usuTipo == 0){
+                header("location: userpageSolicitante.php");
+            }else{
+                header("location: userpageColetor.php");
+            }
 
         } catch (PDOException $erro) {
             echo "

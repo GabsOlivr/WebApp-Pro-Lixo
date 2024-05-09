@@ -52,7 +52,12 @@
                     }else{                  
                         session_start();
                         $_SESSION['usr_obj'] = serialize($obj);
-                        header("location: userpageSolicitante.php");
+                        if( $obj->usuTipo == 0){
+                            header("location: userpageSolicitante.php");
+                        }else{
+                            header("location: userpageColetor.php");
+                        }
+                        
                     }
                     
                 } else {
