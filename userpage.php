@@ -18,6 +18,9 @@ else {
     //Por enquanto esse header pode ficar comentado
     //header("location: index.php");
 }
+
+$nome = $usu_obj->primeiroNome();
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@ else {
     <title>Página do Usuário</title>
 </head>
 <body>
-    <h1>Estamos testando!</h1>
+    <h1> Bem vindo, <?php echo $nome;?> </h1>
     <br>
     <br>
     <form method="POST" action="#">
@@ -38,6 +41,11 @@ else {
     </form>
 
     <img style="width: 300px; height: 300px;" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" >
+
+    <p>Nome: <?php echo $usu_obj->usuNome; ?></p>
+    <p>Celular: <?php echo $usu_obj->usuCell; ?></p>
+    <p>Email: <?php echo $usu_obj->usuEmail; ?></p>
+    
     
 
 </body>

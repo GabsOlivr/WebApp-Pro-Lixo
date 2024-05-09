@@ -9,7 +9,7 @@
         $numeroFormatado= $_POST['celular'];
         $usrnumber = preg_replace('/\D/', '', $numeroFormatado);
         $usrtype= $_POST['tipoUser'];
-        $usricon = $_POST['iconeSelect'];
+        $usricon = $_POST['iconValue'];
         $usrid = $usu_obj->usuId;
         $usrend = $_POST['end'];
         //o endereço deve ser salvo na tabela end_endereco, usando os dados retornados da API e o usu_id

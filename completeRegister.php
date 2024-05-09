@@ -12,8 +12,23 @@ $nome = $usu_obj->primeiroNome();
 
 $icone = 'Escolha seu ícone';
 
-if(isset($_POST['icona']))
-    $icone = $_POST['icona'];
+if(isset($_POST['icon'])){
+    $icone = $_POST['icon'];
+    if($icone == 'Icone tipo A'){
+        $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt1.png';
+    }else{
+        if($icone == 'Icone tipo B'){
+            $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt2.png';
+        }else{
+            if($icone == 'Icone tipo C'){
+                $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt3.png';
+            }
+        }
+    }
+}else{
+    $caminho = 'assets\\\images\\\iconsRegister\\\iconOptNull.png';
+}
+    
 
 ?>
 
@@ -44,6 +59,7 @@ if(isset($_POST['icona']))
                 <label> Que tal um Ícone? </label>
                 <br>
                 <button type="button" id="iconeSelect" name="iconeSelect" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?php echo $icone; ?> </button>
+                <input type="hidden" name="iconValue" value="<?php echo $caminho; ?>">
 
                 <!-- <select id="iconeSelect" name="iconeSelect">
                     <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
@@ -71,9 +87,9 @@ if(isset($_POST['icona']))
                 </div>
                 <div class="modal-body">
                     <form id="iconType" method="POST">
-                        <input type="submit" name="icona" value="Icone tipo A">
-                        <input type="submit" name="icona" value="Icone tipo B">
-                        <input type="submit" name="icona" value="Icone tipo C">
+                        <input type="submit" name="icon" value="Icone tipo A">
+                        <input type="submit" name="icon" value="Icone tipo B">
+                        <input type="submit" name="icon" value="Icone tipo C">
                         <!-- <input type="image" name="icona" value="Icone tipo A" src="assets\images\iconsRegister\iconOpt1.png" alt="Submit" width="60" height="60">
                         <input type="image" name="icona" value="Icone tipo B" src="assets\images\iconsRegister\iconOpt2.png" alt="Submit" width="60" height="60">
                         <input type="image" name="icona" value="Icone tipo C" src="assets\images\iconsRegister\iconOpt3.png" alt="Submit" width="60" height="60"> -->

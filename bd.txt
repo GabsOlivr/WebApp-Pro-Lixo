@@ -8,7 +8,7 @@ usr_nome varchar(100) not null,
 usr_celular varchar(12),
 usr_email varchar(50) not null,
 usr_senha varchar(100) not null,
-usr_icone varchar(25), -- define qual ícone o perfil usa, o próprio sistema fornece os ícones.
+usr_icone varchar(150), -- define qual ícone o perfil usa, o próprio sistema fornece os ícones.
 usr_tipo tinyint not null -- diferencia o tipo de usuário, seja solicitante ou coletor.
 );
 
