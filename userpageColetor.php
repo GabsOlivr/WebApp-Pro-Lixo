@@ -4,8 +4,13 @@ require("usrclass.php");
 session_start();
 if (isset($_SESSION['usr_obj'])){
     $usu_obj = unserialize($_SESSION['usr_obj']);
-    if($usu_obj->usuCell == '00000000000')
+    if($usu_obj->usuCell == '00000000000'){
         header("location: completeRegister.php");
+    }
+
+    if(  $usu_obj->usuTipo == 0){
+        header("location: userpageSolicitante.php");
+    }
 }
 else {
     //Esse echo agora funciona, mas pra isso o redirecionamento teve que mudar
@@ -31,22 +36,39 @@ $nome = $usu_obj->primeiroNome();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Coletor</title>
+    <link rel="stylesheet" href="./assets/css/userStyle.css">
 </head>
 <body>
-    <h1> Bem vindo, <?php echo $nome;?> </h1>
     <br>
     <br>
     <form method="POST" action="#">
         <input type="submit" value="Sair" name="bt1">
     </form>
 
-    <img style="width: 300px; height: 300px;" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" >
+      <!-- <img style="width: 300px; height: 300px;" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" > -->
+    
+      <div class="container">
+    <div class="top-div">
+        <img class="icon" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" >
+        <h1> Bem vindo, <?php echo $nome;?> </h1>
+        <div class="title-card">
+            <p style="margin: 10%;">Endereço</p>
+            <p style="margin: 10%;;">Telefone</p>
+        </div>
+        <div class="item-card">
+            <p>Endereço place holder 293</p>
+            <p> <?php echo $usu_obj->usuCell; ?></p>
+        </div>
 
-    <p>Nome: <?php echo $usu_obj->usuNome; ?></p>
-    <p>Celular: <?php echo $usu_obj->usuCell; ?></p>
-    <p>Email: <?php echo $usu_obj->usuEmail; ?></p>
-    
-    
+        <button type="button" class="">Alterar Informações</button>
+        
+
+    </div>
+    <div class="bottom-div">
+        <!-- Content for the bottom div -->
+    </div>
+</div>
+
 
 </body>
 </html>
