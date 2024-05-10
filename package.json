@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  },
+  "name": "webapp-pro-lixo",
+  "version": "1.0.0",
+  "main": "main.0cf8b554.js",
+
+  "scripts": {
+    "build": "npx tailwindcss -i ./userStyle.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -50,6 +50,7 @@ $nome = $usu_obj->primeiroNome();
     <div class="container">
     <div class="top-div">
         <img class="icon" src="<?php echo $usu_obj->usuIcone ?>" alt="Icone" >
+        <?php echo $usu_obj->usuIcone . '<br>'?>
         <h1> Bem vindo, <?php echo $nome;?> </h1>
         <div class="title-card">
             <p style="margin: 10%;">Endereço</p>

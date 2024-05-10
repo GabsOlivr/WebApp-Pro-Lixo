@@ -18,6 +18,7 @@ if (isset($_POST['icon'])) {
     } else {
         if ($icone == 'Icone tipo B') {
             $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt2.png';
+            
         } else {
             if ($icone == 'Icone tipo C') {
                 $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt3.png';
