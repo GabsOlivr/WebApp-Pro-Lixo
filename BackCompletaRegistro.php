@@ -41,7 +41,7 @@
             if( $usu_obj->usuTipo == 0){
                 header("location: userpageSolicitante.php");
             }else{
-                header("location: userpageColetor.php");
+                header("location: testatroca.php");
             }
 
         } catch (PDOException $erro) {
