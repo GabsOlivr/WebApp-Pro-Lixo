@@ -33,6 +33,10 @@
                 $usu_obj->usuIcone = $linha['usr_icone'];
                 $usu_obj->usuTipo = $linha['usr_tipo'];
             }
+
+            $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', 100.1, 100.2, '".$usu_obj->usuId."')";
+            $conecta->exec($txtTres);
+
             $_SESSION['usr_obj'] = serialize($usu_obj);
             if( $usu_obj->usuTipo == 0){
                 header("location: userpageSolicitante.php");
