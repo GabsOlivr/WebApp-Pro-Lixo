@@ -53,9 +53,9 @@
                         session_start();
                         $_SESSION['usr_obj'] = serialize($obj);
                         if( $obj->usuTipo == 0){
-                            header("location: userpageSolicitante.php");
+                            header("location: ./userpages/mainSolicitante.php");
                         }else{
-                            header("location: testatroca.php");
+                            header("location: ./userpages/mainColetor.php");
                         }
                         
                     }

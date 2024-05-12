@@ -6,9 +6,9 @@ session_start();
 if (isset($_SESSION['usr_obj'])){
     $usu_obj = unserialize($_SESSION['usr_obj']);
     if( $usu_obj->usuTipo == 0){
-        header("location: userpageSolicitante.php");
+        header("location: ./userpages/mainSolicitante.php");
     }else{
-        header("location: userpageColetor.php");
+        header("location: ./userpages/mainColetor.php");
     }
     
 }
