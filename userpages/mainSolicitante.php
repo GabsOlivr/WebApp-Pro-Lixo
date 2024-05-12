@@ -25,11 +25,7 @@ else {
 
 $nome = $usu_obj->primeiroNome();
 
-$cellSeparado = str_split($usu_obj->usuCell);
-$cellFormatado = "(".$cellSeparado[0].$cellSeparado[1].") ".
-                     $cellSeparado[2].$cellSeparado[3].$cellSeparado[4].
-                     $cellSeparado[5].$cellSeparado[6]."-".$cellSeparado[7].
-                     $cellSeparado[8].$cellSeparado[9].$cellSeparado[10];
+$cellFormatado = $usu_obj->formataCell();
 
 ?>
 

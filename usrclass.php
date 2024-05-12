@@ -25,4 +25,13 @@ class usrclass
         $nome = $nomeInteiro[0];
         return $nome;
     }
+
+    public function formataCell(){
+        $cellSeparado = str_split($this->usuCell);
+        $cellFormatado = "(".$cellSeparado[0].$cellSeparado[1].") ".
+                     $cellSeparado[2].$cellSeparado[3].$cellSeparado[4].
+                     $cellSeparado[5].$cellSeparado[6]."-".$cellSeparado[7].
+                     $cellSeparado[8].$cellSeparado[9].$cellSeparado[10];
+        return $cellFormatado;
+    }
 }
