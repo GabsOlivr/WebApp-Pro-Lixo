@@ -63,7 +63,6 @@ $cellFormatado = $usu_obj->formataCell();
                      </path>
                   </svg>
 
-                  </svg>
                </button>
                <a href="#" class="flex ms-2 md:me-24">
                   <img src="../assets/images/" class="h-8 me-3" alt="" /> <!--LOGO NAVBAR -->
@@ -228,6 +227,7 @@ $cellFormatado = $usu_obj->formataCell();
             </div>
          </div>
       </div>
+      
       <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
          <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
              <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
