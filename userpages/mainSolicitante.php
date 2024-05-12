@@ -25,6 +25,12 @@ else {
 
 $nome = $usu_obj->primeiroNome();
 
+$cellSeparado = str_split($usu_obj->usuCell);
+$cellFormatado = "(".$cellSeparado[0].$cellSeparado[1].") ".
+                     $cellSeparado[2].$cellSeparado[3].$cellSeparado[4].
+                     $cellSeparado[5].$cellSeparado[6]."-".$cellSeparado[7].
+                     $cellSeparado[8].$cellSeparado[9].$cellSeparado[10];
+
 ?>
 
 <!doctype html>
@@ -155,7 +161,7 @@ $nome = $usu_obj->primeiroNome();
                         </div>
                         <div class="w-full lg:w-2/2 h-20 shadow rounded-lg">
                            <label for="text" class="font-bold mb-2 text-sm  dark:text-white">Telefone:</label>
-                           <p class="italic"><?php echo $usu_obj->usuCell; ?></p>
+                           <p class="italic"><?php echo $cellFormatado; ?></p>
                         </div>
                      </div>
                   </div>
