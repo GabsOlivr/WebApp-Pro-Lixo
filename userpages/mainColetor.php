@@ -54,7 +54,7 @@ $cellFormatado = $usu_obj->formataCell();
             <div class="flex items-center justify-start rtl:justify-end">
                <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
                   type="button"
-                  class="inline-flex items-center p-2 text-sm text-blue-700 rounded-lg sm:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                  class="inline-flex items-center p-2 text-sm  rounded-lg sm:hidden  focus:outline-none focus:ring-2 focus:ring-blue-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                   <span class="sr-only">Open sidebar</span>
                   <svg class="w-6 h-6 text-blue-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg">
@@ -81,6 +81,20 @@ $cellFormatado = $usu_obj->formataCell();
       aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
+         <li>
+               <a href="#"
+                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <svg
+                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                     <path
+                        d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                     <path
+                        d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                  </svg>
+                  <span class="ms-3">Dashboard</span>
+               </a>
+            </li>
             <li>
                <a href="#"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -214,15 +228,15 @@ $cellFormatado = $usu_obj->formataCell();
             </div>
          </div>
       </div>
-
-      <footer class="bg-white items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
+      <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
          <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
-             <span class="text-sm text-black dark:text-gray-400 text-center">
-                 © 2024 <a href="https://flowbite.com/" class="hover:underline">Pro-Lixo™</a>. All Rights Reserved.
+             <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
+                 © 2024 <a href="https://flowbite.com/" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
              </span>
          </div>
-     </footer> 
+     </footer>
    </div>
+   
 
    <script>
       document.addEventListener("DOMContentLoaded", function () {
