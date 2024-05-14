@@ -2769,6 +2769,74 @@ video {
   forced-color-adjust: none;
 }
 
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1)/* #0000001a */, 0 8px 10px -6px rgb(0 0 0 / 0.1)/* #0000001a */;
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.h-64 {
+  height: 16rem;
+}
+
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity))/* #9ca3af */;
+}
+
+.max-w-xl {
+  max-width: 48rem;
+}
+
+.rounded-pattern-1 {
+  border-radius: 1.5rem;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-2\/4 {
+  width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-28 {
+  margin-top: 7rem;
+}
+
+.pt-28 {
+  padding-top: 7rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -3024,4 +3092,3 @@ video {
 .rtl\:justify-end:where([dir="rtl"], [dir="rtl"] *) {
   justify-content: flex-end;
 }
-

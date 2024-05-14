@@ -109,7 +109,7 @@ $cellFormatado = $usu_obj->formataCell();
                </a>
             </li>
             <li>
-               <a href="#"
+               <a href="./mainColetor.php"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg
                      class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -190,7 +190,7 @@ $cellFormatado = $usu_obj->formataCell();
                      recicláveis pelo mapa de sua cidade.</p>
                   <div class="flex justify-center mt-auto">
                      <button type="button" class="">
-                        <a href="https://www.youtube.com/watch?v=23ZAzJwFS3c">
+                        <a href="./mapColetor.php">
                            <svg class=" text-gray-800 dark:text-white" aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                               viewBox="0 0 24 24">
@@ -237,7 +237,6 @@ $cellFormatado = $usu_obj->formataCell();
      </footer>
    </div>
    
-
    <script>
       document.addEventListener("DOMContentLoaded", function () {
          const toggleButton = document.querySelector('[data-drawer-toggle="logo-sidebar"]');
