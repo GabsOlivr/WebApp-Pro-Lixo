@@ -57,15 +57,7 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../dist/output.css" rel="stylesheet">
-
-    <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 </head>
 
 <body>
@@ -94,6 +86,14 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
     <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-blue-700 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="mainColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">                    
+                            <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />                            
+                        </svg>
+                        <span class="ms-3">Voltar</span>
+                    </a>
+                </li>
                 <li>
                     <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -137,11 +137,13 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
             <div class="mt-14 mb-4 w-full lg:max-w-full lg:flex justify-center text-center">
                 <div class="bg-gray-100 rounded-lg p-2 shadow-xl w-full">
                     <h6 class="text-xl font-bold mb-2">Mapa de Coleta</h6>
-                    <div class="h-64 bg-gray-400 mb-4"></div> <!-- Placeholder do mapa -->
-                    <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>   
+                    <div id="map" class="map h-64 border border-solid border-blue-700 mb-4">
+                    </div> <!-- Placeholder do mapa -->
+                    <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>
                 </div>
             </div>
         </div>
+
 
         <div class="flex flex-col items-center justify-center h-64 mb-4 py-14 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 mt-28 mb-2 pt-28 justify-center w-3/4"> <!-- Bloco dos Cards -->
@@ -205,6 +207,93 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
             });
         });
     </script>
+
+    <script>
+        let map;
+
+        async function initMap() {
+            const {
+                Map
+            } = await google.maps.importLibrary("maps");
+
+            map = new Map(document.getElementById("map"), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8,
+            });
+        }
+
+        initMap();
+
+        // Função para buscar o endereço no mapa
+        function searchAddress() {
+            var address = "Rua Antônia Mateus da silva, 133, Guaratinguetá"; // Endereço pré-definido
+
+            // Cria uma instância do geocoder do Google Maps
+            var geocoder = new google.maps.Geocoder();
+
+            // Faz a geocodificação do endereço
+            geocoder.geocode({
+                'address': address
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    // Define a latitude e longitude no input hidden
+                    document.getElementById("latitude").value = results[0].geometry.location.lat();
+                    document.getElementById("longitude").value = results[0].geometry.location.lng();
+
+                    // Centraliza o mapa na nova localização
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: results[0].geometry.location
+                    });
+
+                    // Cria uma janela de informações para exibir a latitude e longitude
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: 'Latitude: ' + results[0].geometry.location.lat() + '<br>Longitude: ' + results[0].geometry.location.lng()
+                    });
+
+                    // Adiciona um marcador no mapa com a janela de informações
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+
+                    // Abre a janela de informações ao clicar no marcador
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    });
+                } else {
+                    alert('Endereço não encontrado: ' + status);
+                }
+            });
+        }
+
+        // Função para salvar dados
+        function saveData() {
+            var endereco = document.getElementById("endereco").value;
+            var tipoLixo = document.getElementById("tipo-lixo").value;
+            var quantidade = document.getElementById("quantidade").value;
+            var latitude = document.getElementById("latitude").value;
+            var longitude = document.getElementById("longitude").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert(this.responseText);
+                }
+            };
+            xhr.open("POST", window.location.href, true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("save=1&endereco=" + endereco + "&tipo_lixo=" + tipoLixo + "&quantidade=" + quantidade + "&latitude=" + latitude + "&longitude=" + longitude);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
+
+
+
+
 
     <!-- https://flowbite.com/docs/components/sidebar/ -->
 </body>

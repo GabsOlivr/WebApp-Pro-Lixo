@@ -2825,18 +2825,6 @@ video {
   padding-bottom: 3.5rem;
 }
 
-.mt-20 {
-  margin-top: 5rem;
-}
-
-.mt-28 {
-  margin-top: 7rem;
-}
-
-.pt-28 {
-  padding-top: 7rem;
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -3092,3 +3080,4 @@ video {
 .rtl\:justify-end:where([dir="rtl"], [dir="rtl"] *) {
   justify-content: flex-end;
 }
+
