@@ -88,7 +88,7 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="mainColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">                    
-                            <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />                            
                         </svg>
                         <span class="ms-3">Voltar</span>
@@ -137,7 +137,7 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
             <div class="mt-14 mb-4 w-full lg:max-w-full lg:flex justify-center text-center">
                 <div class="bg-gray-100 rounded-lg p-2 shadow-xl w-full">
                     <h6 class="text-xl font-bold mb-2">Mapa de Coleta</h6>
-                    <div id="map" class="map h-64 border border-solid border-blue-700 mb-4">
+                    <div id="map" class="map h-64 rounded-lg  border border-solid border-blue-700 mb-4">
                     </div> <!-- Placeholder do mapa -->
                     <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>
                 </div>
@@ -190,7 +190,7 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
         <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
             <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
                 <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
-                    © 2024 <a href="https://flowbite.com/" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
+                    © 2024 <a href="#" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
                 </span>
             </div>
         </footer>
