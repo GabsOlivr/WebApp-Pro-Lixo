@@ -58,3 +58,10 @@
     padding-bottom: 3.5rem;
   }
 
+.mt-28 {
+    margin-top: 7rem/* 112px */;
+  }
+
+.pt-28 {
+  padding-top: 7rem/* 112px */;
+  }

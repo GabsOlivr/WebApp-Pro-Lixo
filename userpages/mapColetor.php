@@ -1,6 +1,7 @@
 <?php
 
 require("../usrclass.php");
+require("../conexao.php");
 session_start();
 if (isset($_SESSION['usr_obj'])) {
     $usu_obj = unserialize($_SESSION['usr_obj']);
@@ -26,27 +27,22 @@ $nome = $usu_obj->primeiroNome();
 
 $cellFormatado = $usu_obj->formataCell();
 
-// O código a seguir é um teste, meramente um placeholder,
-// isso vai ser substituido pela consulta à tabela de solicitações. 
-$arrUm = array(
-    'materiais' => 'Metais',
-    'quantidade' => 2,
-    'endereco' => 'Rua Alcantra N 12 - Guará, SP'
-);
+$conn = new conexaoBD();
 
-$arrDois = array(
-    'materiais' => 'Plásticos e papel',
-    'quantidade' => 7,
-    'endereco' => 'Rua Sadia N 13 - Guará, SP'
-);
+        try {
+            $conecta = new PDO($conn->dns, $conn->username, $conn->password);
+            $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$arrTres = array(
-    'materiais' => 'Vidro, papelão e plásticos',
-    'quantidade' => 6,
-    'endereco' => 'Rua Pamplona N 14 - Guará, SP'
-);
-
-$arrayDados = array($arrUm, $arrDois, $arrTres);
+            $txtdois = "SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);";
+            $consulta=$conecta->query($txtdois);
+        } catch (PDOException $erro) {
+            echo "
+                    <script>
+                    alert('Não consegui conectar no banco.');
+                    window.location.href = 'index.php';
+                    </script>
+                ";
+        }
 
 ?>
 
@@ -148,19 +144,19 @@ $arrayDados = array($arrUm, $arrDois, $arrTres);
         <div class="flex flex-col items-center justify-center h-64 mb-4 py-14 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 mt-28 mb-2 pt-28 justify-center w-3/4"> <!-- Bloco dos Cards -->
                 <?php
-                foreach ($arrayDados as $linha) {
+                foreach ($consulta as $linha) {
                     echo '<div class="flex items-center justify-center">';
                     echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
                     echo '<div class="grid grid-cols-3 justify-center mb-2">';
                     echo '<div class="col-span-2">';
                     echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
-                    echo '<h6 class="text-xl font-bold mb-2">' . $linha['materiais'] . '</h6>';
+                    echo '<h6 class="text-xl font-bold mb-2">' . $linha['slc_materiais'] . '</h6>';
                     echo '</div>';
                     echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1">';
-                    echo $linha['quantidade'] . ' Itens';
+                    echo $linha['slc_quantidade'] . ' Itens';
                     echo '</button>';
                     echo '</div>';
-                    echo '<p class="text-gray-700">' . $linha['endereco'] . '.</p>';
+                    echo '<p class="text-gray-700">' . $linha['end_completo'] . '.</p>';
                     echo '</div>';
                     echo '</div>';
                 }
