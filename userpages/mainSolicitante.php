@@ -189,7 +189,7 @@ $cellFormatado = $usu_obj->formataCell();
                   <p class="font-normal text-gray-700 text-justify">Solicite a coleta de resíduos sólidos em sua residência.</p>
                   <div class="flex justify-center mt-auto">
                      <button type="button" class="">
-                        <a href="https://www.youtube.com/watch?v=23ZAzJwFS3c">
+                        <a href="#">
                             <svg class=" text-gray-800 dark:text-white" aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                               viewBox="0 0 24 24">
@@ -211,7 +211,7 @@ $cellFormatado = $usu_obj->formataCell();
                     sistema, campanha e muito mais.</p><br>
                   <div class="flex justify-center mt-auto">
                      <button type="button" class="">
-                        <a href="https://www.youtube.com/watch?v=23ZAzJwFS3c">
+                        <a href="#">
                            <svg class=" text-gray-800 dark:text-white" aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
                               viewBox="0 0 24 24">
