@@ -40,9 +40,11 @@ on update cascade
 on delete cascade;
 
  select * from usr_usuario;
--- select * from end_endereco;
--- select * from slc_solicitacao;
+ select * from end_endereco;
+ select * from slc_solicitacao;
 -- drop database prolixo;
+
+SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);
 
 -- INSERT INTO usr_usuario VALUES (0, 'ualbaX', '12982727101', 'shaolinmatadordeporco@gmail.com', 'umkilomorreu', 'http://localhost/', 0);
 -- select usr_senha from usr_usuario where usr_email = '0gabrielsilvino@gmail.com';
