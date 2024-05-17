@@ -32,6 +32,7 @@
                 $usu_obj->usuSenha = $linha['usr_senha'];
                 $usu_obj->usuIcone = $linha['usr_icone'];
                 $usu_obj->usuTipo = $linha['usr_tipo'];
+                $usu_obj->usuEnd = $usrend;
             }
 
             $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', 100.1, 100.2, '".$usu_obj->usuId."')";

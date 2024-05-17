@@ -44,6 +44,12 @@
                         $obj->usuSenha = $linha['usr_senha'];
                         $obj->usuIcone = $linha['usr_icone'];
                         $obj->usuTipo = $linha['usr_tipo'];
+
+                        $txtres = "SELECT end_completo FROM end_endereco JOIN usr_usuario USING(usr_id) WHERE usr_id = '".$obj->usuId."'";
+                        $consultaEnd = $conecta->query($txtres);
+                        foreach($consultaEnd as $linha){
+                            $obj->usuEnd = $linha['end_completo'];
+                        }
                     }
                     if($obj->usuCell == '00000000000'){
                         session_start();

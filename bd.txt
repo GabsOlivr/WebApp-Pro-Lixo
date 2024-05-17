@@ -46,5 +46,7 @@ on delete cascade;
 
 SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);
 
+SELECT end_completo FROM end_endereco JOIN usr_usuario USING(usr_id) WHERE usr_id = 12;
+
 -- INSERT INTO usr_usuario VALUES (0, 'ualbaX', '12982727101', 'shaolinmatadordeporco@gmail.com', 'umkilomorreu', 'http://localhost/', 0);
 -- select usr_senha from usr_usuario where usr_email = '0gabrielsilvino@gmail.com';

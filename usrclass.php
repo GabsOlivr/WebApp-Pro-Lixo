@@ -9,6 +9,7 @@ class usrclass
     public $usuSenha;
     public $usuIcone;
     public $usuTipo;
+    public $usuEnd;
 
     function __construct(){
         $this->usuId = 0;
@@ -18,6 +19,7 @@ class usrclass
         $this->usuSenha = 'SenhaVazia';
         $this->usuIcone = 'caminhoVazio';
         $this->usuTipo = 0;
+        $this->usuEnd = 'EnderecoVazio';
     }
 
     public function primeiroNome(){

@@ -137,7 +137,7 @@ $cellFormatado = $usu_obj->formataCell();
                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="w-full lg:w-2/2 h-20  shadow rounded-lg">
                            <label for="text" class=" font-bold mb-2 text-sm  text-gray-900 dark:text-white">Endereço:</label>
-                           <p class="italic">Rua Antônia Mateus da Silva, 133, Guaratinguetá</p>
+                           <p class="italic"> <?php echo $usu_obj->usuEnd; ?> </p>
                         </div>
                         <div class="w-full lg:w-2/2 h-20 shadow rounded-lg">
                            <label for="text" class="font-bold mb-2 text-sm  dark:text-white">Telefone:</label>
