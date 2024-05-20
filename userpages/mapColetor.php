@@ -33,7 +33,7 @@ $conn = new conexaoBD();
             $conecta = new PDO($conn->dns, $conn->username, $conn->password);
             $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $txtdois = "SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);";
+            $txtdois = "SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id)";
             $consulta=$conecta->query($txtdois);
         } catch (PDOException $erro) {
             echo "

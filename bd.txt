@@ -24,7 +24,8 @@ slc_id int primary key auto_increment not null,
 slc_materiais varchar(45) not null,
 slc_quantidade int not null,
 slc_status tinyint not null,
-slc_data datetime
+slc_data datetime,
+slc_descricao varchar(250)
 );
 
 alter table end_endereco
@@ -39,14 +40,28 @@ add foreign key (end_id) references end_endereco(end_id)
 on update cascade
 on delete cascade;
 
- select * from usr_usuario;
- select * from end_endereco;
- select * from slc_solicitacao;
+select *from usr_usuario;
+select * from end_endereco;
+select * from slc_solicitacao;
 -- drop database prolixo;
 
-SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);
+-- INSERTS, SELECTS E AFINS:
 
-SELECT end_completo FROM end_endereco JOIN usr_usuario USING(usr_id) WHERE usr_id = 12;
-
--- INSERT INTO usr_usuario VALUES (0, 'ualbaX', '12982727101', 'shaolinmatadordeporco@gmail.com', 'umkilomorreu', 'http://localhost/', 0);
+-- INSERT INTO end_endereco VALUES (0, 'Bala na minha mala parece até sacanagi', 100.1, 100.2, 9);
+-- INSERT INTO end_endereco VALUES (0, '".$."', 100.1, 100.2, '".$."') 
 -- select usr_senha from usr_usuario where usr_email = '0gabrielsilvino@gmail.com';
+-- SELECT * FROM usr_usuario WHERE usr_email = '0gabrielsilvino@gmail.com';
+
+
+-- UPDATE usr_usuario SET `usr_celular` = '12982727102', `usr_icone` = 'op1', `usr_tipo` = '1' WHERE (`usr_id` = '8');
+-- UPDATE usr_usuario SET `usr_celular` = '".usr."', `usr_icone` = '".usr."', `usr_tipo` = '".usr."' WHERE (`usr_id` = '".usr."');
+-- "INSERT INTO usr_usuario VALUES (0,'".$usrnome."','12982727101','".$usremail."','".$pass."','http://localhost/',0)";
+
+-- SELECT end_id FROM end_endereco where usr_id = 19;
+-- SELECT end_id FROM end_endereco where usr_id = '".$usu_onj->usuId."'
+
+-- INSERT INTO slc_solicitacao VALUES (0, 'Plástico', 12, 0, null, 'Cê não entende a fita? nois tudo vive pra morrer mas luta pela vida', 9);
+-- INSERT INTO slc_solicitacao VALUES (0, '".."', '".."', 0, null, '".."', '".."')
+
+-- SELECT slc_id, slc_materiais, slc_quantidade, slc_status, end_completo FROM slc_solicitacao join end_endereco using (end_id);
+
