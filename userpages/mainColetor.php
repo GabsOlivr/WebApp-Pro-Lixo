@@ -87,7 +87,7 @@ $cellFormatado = $usu_obj->formataCell();
                      <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                   </svg>
                   <span class="flex-1 ms-3 whitespace-nowrap">Solicitações</span>
-                  <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+
                </a>
             </li>
             <li>
@@ -120,17 +120,6 @@ $cellFormatado = $usu_obj->formataCell();
                   <div class="idade flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
                      <!-- Adicionando classes de alinhamento -->
                      <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
-
-                     <!-- Decidi comentar esse div, pq o nome apecer em cima e em baixo é estranho, fora
-                     a idade do usuário que na verdade a gente nem salva no banco-->
-
-                     <!-- <div class="text-sm">
-                        <p class="text-gray-900 leading-none font-bold">Name User</p>
-                        <div class="grid grid-cols-2 gap-1">
-                           <p class="text-black font-bold">Age:</p>
-                           <p class="text-black italic font-bold">21</p>
-                        </div>
-                     </div> -->
                   </div>
 
                   <div class="mb-8 mt-5">
@@ -160,8 +149,8 @@ $cellFormatado = $usu_obj->formataCell();
                      recicláveis pelo mapa de sua cidade.</p>
                   <div class="flex justify-center mt-4">
                      <button type="button" class="">
-                        <a href="./mapColetor.php">                        
-                           <svg class="flex-shrink-0  text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"  width="45" height="45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <a href="./mapColetor.php">
+                           <svg class="flex-shrink-0  text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="45" height="45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                               <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                            </svg>
                         </a>
