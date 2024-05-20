@@ -5,12 +5,14 @@
   "name": "webapp-pro-lixo",
   "version": "1.0.0",
   "main": "main.0cf8b554.js",
-
   "scripts": {
     "build": "npx tailwindcss -i ./userStyle.css -o ./dist/output.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "flowbite": "^2.3.0"
+  }
 }

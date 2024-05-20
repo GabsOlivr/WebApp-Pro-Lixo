@@ -137,7 +137,7 @@ $cellFormatado = $usu_obj->formataCell();
                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="w-full lg:w-2/2 h-20  shadow rounded-lg">
                            <label for="text" class=" font-bold mb-2 text-sm  text-gray-900 dark:text-white">Endereço:</label>
-                           <p class="italic"> <?php echo $usu_obj->usuEnd; ?> </p>
+                           <p class="italic"> <?php echo $usu_obj->usuEnd;  ?> </p>
                         </div>
                         <div class="w-full lg:w-2/2 h-20 shadow rounded-lg">
                            <label for="text" class="font-bold mb-2 text-sm  dark:text-white">Telefone:</label>
@@ -154,7 +154,7 @@ $cellFormatado = $usu_obj->formataCell();
       <div class="p-4  mt-5 mb-4 "> <!-- Div blocos duplos -->
          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2  justify-center">
             <div class="flex items-center justify-center">
-               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl  border border-solid border-blue-700">
+               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                   <h6 class="mb-2 text-2xl font-bold text-gray-900">Ver Solicitações</h6>
                   <p class="font-normal text-gray-700 text-justify">Vejas as solicitações de coleta de materiais
                      recicláveis pelo mapa de sua cidade.</p>
@@ -171,7 +171,7 @@ $cellFormatado = $usu_obj->formataCell();
             </div>
 
             <div class="flex items-center justify-center">
-               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white  border border-solid border-blue-700 rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                   <h6 class="mb-2 text-2xl font-bold text-gray-900">Manual e Informações</h6>
                   <p class="font-normal text-gray-700 text-justify">Veja como usar esta aplicação, onde entregar sua
                      coleta e mais.</p><br>

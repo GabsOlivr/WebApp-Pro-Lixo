@@ -69,9 +69,7 @@ if (isset($_POST['icon'])) {
 
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço ou CEP de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço ou CEP">
-                <!-- Podemos colocar um mapa pra mostrar o endereço em tempo real, mas eu acho bobagem -->
-                <!-- <div class="placeholder-mapa"></div> -->
+                <input type="text" id="end" name="end" placeholder="Endereço ou CEP">                
                 <input type="submit" name="bt1" value="Continuar">
             </form>
         </div>
