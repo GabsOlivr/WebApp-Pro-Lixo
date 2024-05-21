@@ -70,9 +70,8 @@ try {
 
                     </button>
                     <a href="#" class="flex ms-2 md:me-24">
-                        <img src="../assets/images/" class="h-8 me-3" alt="" /> <!--LOGO NAVBAR -->
-                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-blue-700 dark:text-white">Pro-Lixo</span>
-                    </a>
+                  <img src="../assets/images/Logo-Pro-Lixo-Azul-Crop.png" class="h-8 me-3" alt="Logo" />
+               </a>
                 </div>
 
             </div>

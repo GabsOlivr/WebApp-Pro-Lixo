@@ -35,9 +35,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./index.html" title="">
-            <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt="">
-            Pro-Lixo
+          <a class="navbar-brand" href="#" title="">
+            <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="navbar-logo-img" style="width: 90px; height:30px;" alt="">
+            
           </a>
         </div>
 
@@ -61,7 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1>Pro-Lixo</h1>
+        <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="navbar-logo-img" style="width: 190px; height:70px;" alt=""><br>
           <p>COLETA INTELIGENTE PARA UM FUTURO SUSTENTÁVEL</p>
           <br>
           <!-- <a href="./project.html" class="btn btn-default btn-lg" title="">Descobrir</a> -->
