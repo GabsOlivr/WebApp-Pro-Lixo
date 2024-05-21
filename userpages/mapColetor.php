@@ -132,46 +132,36 @@ try {
         </div>
 
 
-        <div class="flex flex-col items-center justify-center h-64 mb-4 py-14 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 mt-20 mb-2 pt-20 justify-center w-3/4"> <!-- Bloco dos Cards -->
-                <?php
-                foreach ($consulta as $linha) {
-                    echo '<div class="flex items-center justify-center">';
-                    echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
-                    echo '<div class="grid grid-cols-3 justify-center mb-2">';
-                    echo '<div class="col-span-2">';
-                    echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
-                    echo '<h6 class="text-xl font-bold mb-2">' . $linha['slc_materiais'] . '</h6>';
-                    echo '</div>';
-                    echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1">';
-                    echo $linha['slc_quantidade'] . ' Itens';
-                    echo '</button>';
-                    echo '</div>';
-                    echo '<p class="text-gray-700">' . $linha['end_completo'] . '.</p>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-                ?>
 
-                <!-- Base dos cards -->
-                <!-- <div class="flex items-center justify-center">
-                    <div class="bg-gray-100 rounded-lg p-4 shadow-xl w-full">
-                        <div class="grid grid-cols-3 justify-center mb-2">
-                            <div class="col-span-2">
-                                <p class="text-gray-700 text-sm">Materiais para a coleta:</p>
-                                <h6 class="text-xl font-bold mb-2">Materiais</h6>
-                            </div>
-                            <button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1">
-                                0 itens
-                            </button>
-                        </div>
-                        <p class="text-gray-700">Endereço que será mostrado.</p>
-                    </div>
-                </div> -->
 
-            </div>
+<div class="flex flex-col items-center justify-center h-64 mb-4 py-14 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-20 mb-2 pt-20 justify-center w-3/4 "> <!-- Bloco dos Cards -->
+        <?php
+        // Verificação se $consulta não está vazia
+        if (!empty($consulta)) {
+            foreach ($consulta as $linha) {
+                echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
+                echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
+                echo '<div class="grid grid-cols-3 justify-center mb-2">';
+                echo '<div class="col-span-2">';
+                echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
+                echo '<h6 class="text-xl font-bold mb-2">' . htmlspecialchars($linha['slc_materiais'], ENT_QUOTES, 'UTF-8') . '</h6>'; // Usando htmlspecialchars para segurança
+                echo '</div>';
+                echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1">';
+                echo htmlspecialchars($linha['slc_quantidade'], ENT_QUOTES, 'UTF-8') . ' Itens'; // Usando htmlspecialchars para segurança
+                echo '</button>';
+                echo '</div>';
+                echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
+        }
+        ?>
+    </div>
+</div>
 
-        </div>
 
 
         <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">

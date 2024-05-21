@@ -94,7 +94,7 @@ if (isset($_POST['icon'])) {
                         </button>
                         <button type="submit" name="icon" value="Icone tipo C" style="border: none; background: none; width: 30%; height: 30%;">
                             <img src="assets\images\iconsRegister\iconOpt3.png" alt="Icone 3" style="width: 100%; height: 100%;">
-                            Opçãp 3
+                            Opção 3
                         </button>
                         <!-- <input type="submit" name="icon" value="Icone tipo A">
                         <input type="submit" name="icon" value="Icone tipo B">
