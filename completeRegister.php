@@ -18,7 +18,6 @@ if (isset($_POST['icon'])) {
     } else {
         if ($icone == 'Icone tipo B') {
             $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt2.png';
-            
         } else {
             if ($icone == 'Icone tipo C') {
                 $caminho = 'assets\\\images\\\iconsRegister\\\iconOpt3.png';
@@ -69,7 +68,7 @@ if (isset($_POST['icon'])) {
 
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço ou CEP de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço ou CEP">                
+                <input type="text" id="end" name="end" placeholder="Endereço ou CEP">
                 <input type="submit" name="bt1" value="Continuar">
             </form>
         </div>
@@ -80,22 +79,30 @@ if (isset($_POST['icon'])) {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Título do Modal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Escolha um ícone para te representar:</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="iconType" method="POST">
-                        <input type="submit" name="icon" value="Icone tipo A">
+                    <form id="iconType" method="POST" style="padding-left: 5%; padding-right: 5%;">
+                        <button type="submit" name="icon" value="Icone tipo A" style="border: none; background: none; width: 30%; height: 30%;">
+                            <img src="assets\images\iconsRegister\iconOpt1.png" alt="Icone 1" style="width: 100%; height: 100%;">
+                            Opção 1
+                        </button>
+                        <button type="submit" name="icon" value="Icone tipo B" style="border: none; background: none; width: 30%; height: 30%;">
+                            <img src="assets\images\iconsRegister\iconOpt2.png" alt="Icone 2" style="width: 100%; height: 100%;">
+                            Opção 2
+                        </button>
+                        <button type="submit" name="icon" value="Icone tipo C" style="border: none; background: none; width: 30%; height: 30%;">
+                            <img src="assets\images\iconsRegister\iconOpt3.png" alt="Icone 3" style="width: 100%; height: 100%;">
+                            Opçãp 3
+                        </button>
+                        <!-- <input type="submit" name="icon" value="Icone tipo A">
                         <input type="submit" name="icon" value="Icone tipo B">
-                        <input type="submit" name="icon" value="Icone tipo C">
-                        <!-- <input type="image" name="icona" value="Icone tipo A" src="assets\images\iconsRegister\iconOpt1.png" alt="Submit" width="60" height="60">
-                        <input type="image" name="icona" value="Icone tipo B" src="assets\images\iconsRegister\iconOpt2.png" alt="Submit" width="60" height="60">
-                        <input type="image" name="icona" value="Icone tipo C" src="assets\images\iconsRegister\iconOpt3.png" alt="Submit" width="60" height="60"> -->
+                        <input type="submit" name="icon" value="Icone tipo C"> -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button> -->
                 </div>
             </div>
         </div>
