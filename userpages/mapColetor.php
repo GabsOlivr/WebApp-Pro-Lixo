@@ -204,77 +204,32 @@ try {
             } = await google.maps.importLibrary("maps");
 
             map = new Map(document.getElementById("map"), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
+                center: { 
+                    lat: -22.747819734464475, 
+                    lng: -45.126494497745206
+                    // Lembra-te: Lat e lng recebem a longitude a e latitude do endereço do coletor por padrão 
                 },
-                zoom: 8,
+                 zoom: 18,
             });
         }
 
         initMap();
 
-        // Função para buscar o endereço no mapa
-        function searchAddress() {
-            var address = "Rua Antônia Mateus da silva, 133, Guaratinguetá"; // Endereço pré-definido
-
-            // Cria uma instância do geocoder do Google Maps
+        function GetLatlong() {
             var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('textboxid').value;
 
-            // Faz a geocodificação do endereço
             geocoder.geocode({
                 'address': address
-            }, function(results, status) {
+            }, function(results, status)
+            {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    // Define a latitude e longitude no input hidden
-                    document.getElementById("latitude").value = results[0].geometry.location.lat();
-                    document.getElementById("longitude").value = results[0].geometry.location.lng();
-
-                    // Centraliza o mapa na nova localização
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 15,
-                        center: results[0].geometry.location
-                    });
-
-                    // Cria uma janela de informações para exibir a latitude e longitude
-                    var infoWindow = new google.maps.InfoWindow({
-                        content: 'Latitude: ' + results[0].geometry.location.lat() + '<br>Longitude: ' + results[0].geometry.location.lng()
-                    });
-
-                    // Adiciona um marcador no mapa com a janela de informações
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-
-                    // Abre a janela de informações ao clicar no marcador
-                    marker.addListener('click', function() {
-                        infoWindow.open(map, marker);
-                    });
-                } else {
-                    alert('Endereço não encontrado: ' + status);
+                    var latitude = results[0].geometry.location.lat();
+                    var longitude = results[0].geometry.location.lng();
                 }
             });
         }
-
-        // Função para salvar dados
-        function saveData() {
-            var endereco = document.getElementById("endereco").value;
-            var tipoLixo = document.getElementById("tipo-lixo").value;
-            var quantidade = document.getElementById("quantidade").value;
-            var latitude = document.getElementById("latitude").value;
-            var longitude = document.getElementById("longitude").value;
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert(this.responseText);
-                }
-            };
-            xhr.open("POST", window.location.href, true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.send("save=1&endereco=" + endereco + "&tipo_lixo=" + tipoLixo + "&quantidade=" + quantidade + "&latitude=" + latitude + "&longitude=" + longitude);
-        }
+        
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
 
