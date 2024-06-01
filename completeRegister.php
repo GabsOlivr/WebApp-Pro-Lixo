@@ -61,11 +61,12 @@ if (isset($_POST['icon'])) {
                 <input type="hidden" name="iconValue" value="<?php echo $caminho; ?>">
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço">
-                <input type="hidden" name="latcampo" value="latcampo">
-                <input type="hidden" name="lngcampo" value="lngcampo">
-                <input type="submit" name="bt1" value="Continuar">
+                <input type="text" id="end" name="end" placeholder="Endereço" value="Avenida Doutor Epitácio Santiago,199 - Centro, Lorena - SP">
+                <input type="hidden" id="latcampo" name="latcampo">
+                <input type="hidden" id="lngcampo" name="lngcampo">
+                <input type="submit" id="bt1" name="bt1" value="Continuar">
             </form>
+            
         </div>
     </section>
 
@@ -129,6 +130,8 @@ if (isset($_POST['icon'])) {
                 }
             });
         }
+
+        document.getElementById('bt1').addEventListener('click', GetLatlong);
     </script>
 
 
