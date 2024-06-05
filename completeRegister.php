@@ -61,7 +61,7 @@ if (isset($_POST['icon'])) {
                 <input type="hidden" name="iconValue" value="<?php echo $caminho; ?>">
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço" value="Avenida Doutor Epitácio Santiago,199 - Centro, Lorena - SP">
+                <input type="text" id="end" name="end" placeholder="Endereço" value="">
                 <input type="hidden" id="latcampo" name="latcampo">
                 <input type="hidden" id="lngcampo" name="lngcampo">
                 <input type="submit" id="bt1" name="bt1" value="Continuar">
@@ -114,24 +114,35 @@ if (isset($_POST['icon'])) {
         // Definir o tipo de autocompletar para endereços
         autocomplete.setTypes(['address']);
 
-        function GetLatlong() {
-            var geocoder = new google.maps.Geocoder();
-            var address = document.getElementById('end').value;
+        // Adicionar ouvinte de evento para mudança no campo de endereço
+        autocomplete.addListener('place_changed', GetLatlong);
 
-            geocoder.geocode({
-                'address': address
-            }, function(results, status)
-            {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    var latitude = results[0].geometry.location.lat();
-                    var longitude = results[0].geometry.location.lng();
-                    document.getElementById('latcampo').value = latitude;
-                    document.getElementById('lngcampo').value = longitude;
-                }
-            });
-        }
+        // Modificar a função GetLatlong para ser chamada pelo evento submit do formulário
+        document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar o envio do formulário por enquanto
+            GetLatlong(); // Chamar a função para obter a latitude e a longitude
+            this.submit(); // Agora, enviar o formulário
+        });
 
-        document.getElementById('bt1').addEventListener('click', GetLatlong);
+    function GetLatlong() {
+        var geocoder = new google.maps.Geocoder();
+        var address = document.getElementById('end').value;
+
+        geocoder.geocode({
+        'address': address
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                document.getElementById('latcampo').value = latitude;
+                document.getElementById('lngcampo').value = longitude;
+            } else {
+                // Tratar o erro de geocodificação, se necessário
+                console.error('Geocodificação falhou com status: ' + status);
+            }
+        });
+    }
+
     </script>
 
 

@@ -40,6 +40,7 @@
             }
 
             $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
+            echo "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
             $conecta->exec($txtTres);
 
             $_SESSION['usr_obj'] = serialize($usu_obj);
