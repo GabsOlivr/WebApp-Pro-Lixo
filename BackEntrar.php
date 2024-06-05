@@ -61,7 +61,11 @@
                         if( $obj->usuTipo == 0){
                             header("location: ./userpages/mainSolicitante.php");
                         }else{
-                            header("location: ./userpages/mainColetor.php");
+                            if ( $obj->usuTipo == 1) {
+                                header("location: ./userpages/mainColetor.php");
+                            }else{
+                                header("location: ./userpages/mainAdmin.php"); 
+                            }
                         }
                         
                     }

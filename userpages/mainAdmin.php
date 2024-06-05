@@ -10,8 +10,8 @@ if (isset($_SESSION['usr_obj'])) {
 
    if ($usu_obj->usuTipo == 0) {
       header("location: mainSolicitante.php");
-   }elseif ($usu_obj->usuTipo == 2) {
-      header("location: mainAdmin.php");
+   }elseif ($usu_obj->usuTipo == 1) {
+      header("location: mainColetor.php");
    }
 } else {
    echo "
@@ -83,7 +83,7 @@ $cellFormatado = $usu_obj->formataCell();
                   <span class="ms-3">Dashboard</span>
                </a>
             </li>
-            <li>
+            <!-- <li>
                <a href="./mapColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                      <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
@@ -91,7 +91,7 @@ $cellFormatado = $usu_obj->formataCell();
                   <span class="flex-1 ms-3 whitespace-nowrap">Solicitações</span>
 
                </a>
-            </li>
+            </li> -->
             <li>
                <a href="./mainColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -142,39 +142,13 @@ $cellFormatado = $usu_obj->formataCell();
          </div>
       </div>
 
-      <div class="p-4  mt-5 mb-4 "> <!-- Div blocos duplos -->
-         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2  justify-center">
-            <div class="flex items-center justify-center">
-               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-                  <h6 class="mb-2 text-2xl font-bold text-gray-900">Ver Solicitações</h6>
-                  <p class="font-normal text-gray-700 text-justify">Vejas as solicitações de coleta de materiais
-                     recicláveis pelo mapa de sua cidade.</p>
-                  <div class="flex justify-center mt-4">
-                     <button type="button" class="">
-                        <a href="./mapColetor.php">
-                           <svg class="flex-shrink-0  text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" width="45" height="45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                           </svg>
-                        </a>
-                     </button>
-                  </div>
-               </div>
-            </div>
 
+      <div class="p-4  mt-5 mb-4 "> <!-- Div do Gráfico é bom dimaizi meuamigo-->
+         <div class="grid grid-cols-1 gap-4 mb-2  justify-center">      
             <div class="flex items-center justify-center">
-               <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-                  <h6 class="mb-2 text-2xl font-bold text-gray-900">Manual e Informações</h6>
-                  <p class="font-normal text-gray-700 text-justify">Veja como usar esta aplicação, onde entregar sua
-                     coleta e mais.</p><br>
-                  <div class="flex justify-center mt-auto">
-                     <button type="button" class="">
-                        <a href="#">
-                           <svg class=" text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" viewBox="0 0 24 24">
-                              <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd" />
-                           </svg>
-                        </a>
-                     </button>
-                  </div>
+               <div class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-2xl ">
+                  <h6 class="mb-2 text-2xl font-bold text-gray-900">Gráfico de...</h6>
+                  <p class="font-normal text-gray-700 text-justify">Parágrafo de descrição do gráfico, talvez nem precise.</p><br>
                </div>
             </div>
          </div>

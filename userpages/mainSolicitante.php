@@ -10,6 +10,8 @@ if (isset($_SESSION['usr_obj'])) {
 
    if ($usu_obj->usuTipo == 1) {
       header("location: mainColetor.php");
+   }elseif ($usu_obj->usuTipo == 2) {
+      header("location: mainAdmin.php");
    }
 } else {
    echo "
