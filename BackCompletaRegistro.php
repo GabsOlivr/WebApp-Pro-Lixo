@@ -35,9 +35,11 @@
                 $usu_obj->usuIcone = $linha['usr_icone'];
                 $usu_obj->usuTipo = $linha['usr_tipo'];
                 $usu_obj->usuEnd = $usrend;
+                $usu_obj->usuLat = $usrlat;
+                $usu_obj->usuLng = $usrlng;
             }
 
-            $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', 100.1, 100.2, '".$usu_obj->usuId."')";
+            $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
             $conecta->exec($txtTres);
 
             $_SESSION['usr_obj'] = serialize($usu_obj);

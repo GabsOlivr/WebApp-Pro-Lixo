@@ -10,6 +10,8 @@ class usrclass
     public $usuIcone;
     public $usuTipo;
     public $usuEnd;
+    public $usuLat;
+    public $usuLng;
 
     function __construct(){
         $this->usuId = 0;
@@ -20,6 +22,8 @@ class usrclass
         $this->usuIcone = 'caminhoVazio';
         $this->usuTipo = 0;
         $this->usuEnd = 'EnderecoVazio';
+        $this->usuLat = '-22.747819734464475';
+        $this->usuLng = '-45.126494497745206';
     }
 
     public function primeiroNome(){

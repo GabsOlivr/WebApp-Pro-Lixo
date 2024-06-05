@@ -29,6 +29,9 @@ $cellFormatado = $usu_obj->formataCell();
 
 $conn = new conexaoBD();
 
+$usulat = $usu_obj->usuLat;
+$usulng = $usu_obj->usuLng;
+
 try {
     $conecta = new PDO($conn->dns, $conn->username, $conn->password);
     $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -119,12 +122,18 @@ try {
         </div>
     </aside>
 
+    <form>
+        <input type="hidden" id="usulat" name="usulat" value="<?php echo htmlspecialchars($usulat); ?>">
+        <input type="hidden" id="usulng" name="usulng" value="<?php echo htmlspecialchars($usulng); ?>">
+        <input type="hidden" id="endercoteste" name="endercoteste" value="<?php echo htmlspecialchars($usu_obj->usuEnd); ?>">
+    </form>
+
     <div class="p-4 sm:ml-64 ">
         <div class="flex flex-col items-center justify-center h-auto mb-4 w-full lg:w-1/2 mx-auto"> <!-- Bloco do Maps-->
             <div class="mt-14 mb-4 w-full lg:max-w-full lg:flex justify-center text-center">
                 <div class="bg-gray-100 rounded-lg p-2 shadow-xl w-full">
                     <h6 class="text-xl font-bold mb-2">Mapa de Coleta</h6>
-                    <div id="map" class="map h-64 rounded-lg  border border-solid border-blue-700 mb-4">
+                    <div id="map" class="map h-64 rounded-lg mb-4">
                     </div> <!-- Placeholder do mapa -->
                     <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>
                 </div>
@@ -199,17 +208,19 @@ try {
         let map;
 
         async function initMap() {
+            var usrlat = parseFloat(document.getElementById('usulat').value);
+            var usrlng = parseFloat(document.getElementById('usulng').value);
             const {
                 Map
             } = await google.maps.importLibrary("maps");
 
             map = new Map(document.getElementById("map"), {
-                center: { 
-                    lat: -22.747819734464475, 
-                    lng: -45.126494497745206
+                center: {
+                    lat: usrlat,
+                    lng: usrlng
                     // Lembra-te: Lat e lng recebem a longitude a e latitude do endereço do coletor por padrão 
                 },
-                 zoom: 18,
+                zoom: 18,
             });
         }
 
@@ -217,19 +228,17 @@ try {
 
         function GetLatlong() {
             var geocoder = new google.maps.Geocoder();
-            var address = document.getElementById('textboxid').value;
+            var address = document.getElementById('endercoteste').value;
 
             geocoder.geocode({
                 'address': address
-            }, function(results, status)
-            {
+            }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latitude = results[0].geometry.location.lat();
                     var longitude = results[0].geometry.location.lng();
                 }
             });
         }
-        
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
 
