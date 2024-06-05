@@ -61,8 +61,10 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1>Pro-Lixo</h1>
-          <p>COLETA INTELIGENTE PARA UM FUTURO SUSTENTÁVEL</p>
+
+          <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="responsive-img" alt="Logo Pro-Lixo">        
+          
+          <p class="teste">COLETA INTELIGENTE PARA UM FUTURO SUSTENTÁVEL</p>
           <br>
           <!-- <a href="./project.html" class="btn btn-default btn-lg" title="">Descobrir</a> -->
         </div>

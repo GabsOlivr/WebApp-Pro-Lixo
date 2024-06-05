@@ -6111,4 +6111,16 @@ label {
     margin-right: 5px
 }
 
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    /* max-width: 526px;
+    max-height: 172px; */
+}
+
+.teste{
+    width: 100%;
+    padding-left: 108px;
+}
+
 /*# sourceMappingURL=main.0cf8b554.map*/
