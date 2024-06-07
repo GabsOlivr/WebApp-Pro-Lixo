@@ -12,6 +12,8 @@
         $usricon = $_POST['iconValue'];
         $usrid = $usu_obj->usuId;
         $usrend = $_POST['end'];
+        $usrlat = $_POST['latcampo'];
+        $usrlng = $_POST['lngcampo'];
         //o endereço deve ser salvo na tabela end_endereco, usando os dados retornados da API e o usu_id
 
         $conn = new conexaoBD();
@@ -33,13 +35,17 @@
                 $usu_obj->usuIcone = $linha['usr_icone'];
                 $usu_obj->usuTipo = $linha['usr_tipo'];
                 $usu_obj->usuEnd = $usrend;
+                $usu_obj->usuLat = $usrlat;
+                $usu_obj->usuLng = $usrlng;
             }
 
-            $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', 100.1, 100.2, '".$usu_obj->usuId."')";
+            $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
+            echo "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
             $conecta->exec($txtTres);
 
             $_SESSION['usr_obj'] = serialize($usu_obj);
             if( $usu_obj->usuTipo == 0){
+                echo"Latitude: ".$usrlat.", Longitude: ".$usrlng;
                 header("location: ./userpages/mainSolicitante.php");
             }else{
                 header("location: ./userpages/mainColetor.php");
@@ -50,7 +56,7 @@
                     <script>
                     alert('Não consegui conectar no banco.');
                     window.location.href = 'index.php';
-                    </script>
+                    </scrip>
                 ";
         }
     }else{

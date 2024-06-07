@@ -61,6 +61,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
+
         <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="navbar-logo-img" style="width: 190px; height:70px;" alt=""><br>
           <p>COLETA INTELIGENTE PARA UM FUTURO SUSTENTÁVEL</p>
           <br>
@@ -190,7 +191,7 @@
 
         <div class="col-xs-12 col-md-4">
           <img src="./assets/images/Mini_Ico_Gavriel.png" width="200px" height="200px" alt="" class="reveal img-responsive reveal-content image-center">
-          <h3>Gabriel S. P. de Oliveirak</h3>
+          <h3>Gabriel S. P. de Oliveira</h3>
           <h4>Dev Back-End <br> DBA</h4>
           <p class="text-justify"> Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt,
             lacinia risus vel, imperdiet neque.</p>

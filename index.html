@@ -190,7 +190,7 @@
 
         <div class="col-xs-12 col-md-4">
           <img src="./assets/images/Mini_Ico_Gavriel.png" width="200px" height="200px" alt="" class="reveal img-responsive reveal-content image-center">
-          <h3>Gabriel S. P. de Oliveirak</h3>
+          <h3>Gabriel S. P. de Oliveira</h3>
           <h4>Dev Back-End <br> DBA</h4>
           <p class="text-justify"> Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt,
             lacinia risus vel, imperdiet neque.</p>

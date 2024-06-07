@@ -29,6 +29,9 @@ $cellFormatado = $usu_obj->formataCell();
 
 $conn = new conexaoBD();
 
+$usulat = $usu_obj->usuLat;
+$usulng = $usu_obj->usuLng;
+
 try {
     $conecta = new PDO($conn->dns, $conn->username, $conn->password);
     $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -118,12 +121,18 @@ try {
         </div>
     </aside>
 
+    <form>
+        <input type="hidden" id="usulat" name="usulat" value="<?php echo htmlspecialchars($usulat); ?>">
+        <input type="hidden" id="usulng" name="usulng" value="<?php echo htmlspecialchars($usulng); ?>">
+        <input type="hidden" id="endercoteste" name="endercoteste" value="<?php echo htmlspecialchars($usu_obj->usuEnd); ?>">
+    </form>
+
     <div class="p-4 sm:ml-64 ">
         <div class="flex flex-col items-center justify-center h-auto mb-4 w-full lg:w-1/2 mx-auto"> <!-- Bloco do Maps-->
             <div class="mt-14 mb-4 w-full lg:max-w-full lg:flex justify-center text-center">
                 <div class="bg-gray-100 rounded-lg p-2 shadow-xl w-full">
                     <h6 class="text-xl font-bold mb-2">Mapa de Coleta</h6>
-                    <div id="map" class="map h-64 rounded-lg  border border-solid border-blue-700 mb-4">
+                    <div id="map" class="map h-64 rounded-lg mb-4">
                     </div> <!-- Placeholder do mapa -->
                     <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>
                 </div>
@@ -188,81 +197,36 @@ try {
         let map;
 
         async function initMap() {
+            var usrlat = parseFloat(document.getElementById('usulat').value);
+            var usrlng = parseFloat(document.getElementById('usulng').value);
             const {
                 Map
             } = await google.maps.importLibrary("maps");
 
             map = new Map(document.getElementById("map"), {
                 center: {
-                    lat: -34.397,
-                    lng: 150.644
+                    lat: usrlat,
+                    lng: usrlng
+                    // Lembra-te: Lat e lng recebem a longitude a e latitude do endereço do coletor por padrão 
                 },
-                zoom: 8,
+                zoom: 18,
             });
         }
 
         initMap();
 
-        // Função para buscar o endereço no mapa
-        function searchAddress() {
-            var address = "Rua Antônia Mateus da silva, 133, Guaratinguetá"; // Endereço pré-definido
-
-            // Cria uma instância do geocoder do Google Maps
+        function GetLatlong() {
             var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('endercoteste').value;
 
-            // Faz a geocodificação do endereço
             geocoder.geocode({
                 'address': address
             }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    // Define a latitude e longitude no input hidden
-                    document.getElementById("latitude").value = results[0].geometry.location.lat();
-                    document.getElementById("longitude").value = results[0].geometry.location.lng();
-
-                    // Centraliza o mapa na nova localização
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 15,
-                        center: results[0].geometry.location
-                    });
-
-                    // Cria uma janela de informações para exibir a latitude e longitude
-                    var infoWindow = new google.maps.InfoWindow({
-                        content: 'Latitude: ' + results[0].geometry.location.lat() + '<br>Longitude: ' + results[0].geometry.location.lng()
-                    });
-
-                    // Adiciona um marcador no mapa com a janela de informações
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-
-                    // Abre a janela de informações ao clicar no marcador
-                    marker.addListener('click', function() {
-                        infoWindow.open(map, marker);
-                    });
-                } else {
-                    alert('Endereço não encontrado: ' + status);
+                    var latitude = results[0].geometry.location.lat();
+                    var longitude = results[0].geometry.location.lng();
                 }
             });
-        }
-
-        // Função para salvar dados
-        function saveData() {
-            var endereco = document.getElementById("endereco").value;
-            var tipoLixo = document.getElementById("tipo-lixo").value;
-            var quantidade = document.getElementById("quantidade").value;
-            var latitude = document.getElementById("latitude").value;
-            var longitude = document.getElementById("longitude").value;
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    alert(this.responseText);
-                }
-            };
-            xhr.open("POST", window.location.href, true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.send("save=1&endereco=" + endereco + "&tipo_lixo=" + tipoLixo + "&quantidade=" + quantidade + "&latitude=" + latitude + "&longitude=" + longitude);
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>

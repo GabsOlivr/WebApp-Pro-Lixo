@@ -46,7 +46,7 @@ if (isset($_POST['icon'])) {
 <body>
     <section class="wrapper">
         <div class="form complete-registration">
-            <header> <?php echo $nome; ?>, Conte mais sobre você</header>
+            <header> <?php echo $nome; ?>, conte mais sobre você</header>
             <form id="completaRegistr0" action="BackCompletaRegistro.php" method="POST">
                 <label> Qual seu número de celular</label>
                 <input type="text" id="celular" name="celular" placeholder="(xx) xxxxx-xxxx" required pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}">
@@ -59,18 +59,14 @@ if (isset($_POST['icon'])) {
                 <br>
                 <button type="button" id="iconeSelect" name="iconeSelect" class="btnIcon" data-bs-toggle="modal" data-bs-target="#exampleModal"> <?php echo $icone; ?> </button>
                 <input type="hidden" name="iconValue" value="<?php echo $caminho; ?>">
-
-                <!-- <select id="iconeSelect" name="iconeSelect">
-                    <option value="assets\\images\\iconsRegister\\iconOpt1.png">Ícone A</option>
-                    <option value="assets\\images\\iconsRegister\\iconOpt2.png">Ícone B</option>
-                    <option value="assets\\images\\iconsRegister\\iconOpt3.png">Ícone C</option>
-                </select> -->
-
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
-                <label> Qual o endereço ou CEP de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço ou CEP">
-                <input type="submit" name="bt1" value="Continuar">
+                <label> Qual o endereço de sua residência? </label>
+                <input type="text" id="end" name="end" placeholder="Endereço" value="">
+                <input type="hidden" id="latcampo" name="latcampo">
+                <input type="hidden" id="lngcampo" name="lngcampo">
+                <input type="submit" id="bt1" name="bt1" value="Continuar">
             </form>
+            
         </div>
     </section>
 
@@ -96,9 +92,6 @@ if (isset($_POST['icon'])) {
                             <img src="assets\images\iconsRegister\iconOpt3.png" alt="Icone 3" style="width: 100%; height: 100%;">
                             Opção 3
                         </button>
-                        <!-- <input type="submit" name="icon" value="Icone tipo A">
-                        <input type="submit" name="icon" value="Icone tipo B">
-                        <input type="submit" name="icon" value="Icone tipo C"> -->
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -120,10 +113,38 @@ if (isset($_POST['icon'])) {
 
         // Definir o tipo de autocompletar para endereços
         autocomplete.setTypes(['address']);
+
+        // Adicionar ouvinte de evento para mudança no campo de endereço
+        autocomplete.addListener('place_changed', GetLatlong);
+
+        // Modificar a função GetLatlong para ser chamada pelo evento submit do formulário
+        document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar o envio do formulário por enquanto
+            GetLatlong(); // Chamar a função para obter a latitude e a longitude
+            this.submit(); // Agora, enviar o formulário
+        });
+
+    function GetLatlong() {
+        var geocoder = new google.maps.Geocoder();
+        var address = document.getElementById('end').value;
+
+        geocoder.geocode({
+        'address': address
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                document.getElementById('latcampo').value = latitude;
+                document.getElementById('lngcampo').value = longitude;
+            } else {
+                // Tratar o erro de geocodificação, se necessário
+                console.error('Geocodificação falhou com status: ' + status);
+            }
+        });
+    }
+
     </script>
 
-    <!-- script bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
         // Function to format phone number input
