@@ -40,12 +40,10 @@
             }
 
             $txtTres = "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
-            echo "INSERT INTO end_endereco VALUES (0, '".$usrend."', '".$usrlat."', '".$usrlng."', '".$usu_obj->usuId."')";
             $conecta->exec($txtTres);
 
             $_SESSION['usr_obj'] = serialize($usu_obj);
-            if( $usu_obj->usuTipo == 0){
-                echo"Latitude: ".$usrlat.", Longitude: ".$usrlng;
+            if( $usu_obj->usuTipo == 0){ 
                 header("location: ./userpages/mainSolicitante.php");
             }else{
                 header("location: ./userpages/mainColetor.php");
