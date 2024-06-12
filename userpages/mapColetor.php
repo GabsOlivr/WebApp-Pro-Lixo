@@ -142,8 +142,8 @@ try {
 
 
 
-<div class="flex flex-col items-center justify-center h-64 mb-4 py-14 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-20 mb-2 pt-20 justify-center w-3/4 "> <!-- Bloco dos Cards -->
+<div class="flex flex-col items-center justify-start h-64 mb-4 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-2 mb-2 pt-2 justify-center w-3/4 "> <!-- Bloco dos Cards -->
         <?php
         // Verificação se $consulta não está vazia
         if (!empty($consulta)) {
