@@ -61,7 +61,7 @@ if (isset($_POST['icon'])) {
                 <input type="hidden" name="iconValue" value="<?php echo $caminho; ?>">
                 <!-- Aqui nós fazemos a checagem do endereço pela API -->
                 <label> Qual o endereço de sua residência? </label>
-                <input type="text" id="end" name="end" placeholder="Endereço" value="">
+                <input type="text" id="end" name="end" placeholder="Endereço" value="" required>
                 <input type="hidden" id="latcampo" name="latcampo">
                 <input type="hidden" id="lngcampo" name="lngcampo">
                 <input type="submit" id="bt1" name="bt1" value="Continuar">
