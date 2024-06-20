@@ -62,7 +62,7 @@
       <div class="row">
         <div class="col-xs-12">
 
-        <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="navbar-logo-img" style="width: 190px; height:70px;" alt=""><br>
+        <img src="./assets/images/Logo-Pro-Lixo-Branco-Crop.png" class="navbar-logo-img" style="width: 190px; height:70px;" alt=""><br><br>
           <p>COLETA INTELIGENTE PARA UM FUTURO SUSTENTÁVEL</p>
           <br>
           <!-- <a href="./project.html" class="btn btn-default btn-lg" title="">Descobrir</a> -->
