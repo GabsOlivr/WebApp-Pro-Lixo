@@ -195,23 +195,35 @@ try {
 
     <script>
         let map;
+        let marker;
 
         async function initMap() {
             var usrlat = parseFloat(document.getElementById('usulat').value);
             var usrlng = parseFloat(document.getElementById('usulng').value);
             const {
-                Map
+                Map, Marker
             } = await google.maps.importLibrary("maps");
 
             map = new Map(document.getElementById("map"), {
                 center: {
                     lat: usrlat,
-                    lng: usrlng
-                    // Lembra-te: Lat e lng recebem a longitude a e latitude do endereço do coletor por padrão 
+                    lng: usrlng 
                 },
                 zoom: 18,
             });
+
+            const marker = new Marker({
+                position: {
+                    lat: usrlat,
+                    lng: usrlng
+                },
+                map: map,
+                title: "Seu Endereço"
+            })
+
         }
+
+        //window.onload = initMap;
 
         initMap();
 
@@ -225,6 +237,12 @@ try {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latitude = results[0].geometry.location.lat();
                     var longitude = results[0].geometry.location.lng();
+
+                    map.setCenter({ lat: latitude, lng: longitude });
+
+                    marker.setPosition({ lat: latitude, lng: longitude });
+                } else {
+                    console.error('Geocode was not successful for the following reason: ' + status);
                 }
             });
         }

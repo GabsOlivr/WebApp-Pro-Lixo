@@ -6,15 +6,18 @@
     $usu_obj = unserialize($_SESSION['usr_obj']);
 
     if($_SERVER['REQUEST_METHOD']=="POST"){
-        $numeroFormatado= $_POST['celular'];
+    if (isset($_POST['end'])) {
+        $numeroFormatado = $_POST['celular'];
         $usrnumber = preg_replace('/\D/', '', $numeroFormatado);
-        $usrtype= $_POST['tipoUser'];
+        $usrtype = $_POST['tipoUser'];
         $usricon = $_POST['iconValue'];
         $usrid = $usu_obj->usuId;
         $usrend = $_POST['end'];
         $usrlat = $_POST['latcampo'];
         $usrlng = $_POST['lngcampo'];
-        //o endereço deve ser salvo na tabela end_endereco, usando os dados retornados da API e o usu_id
+    } else {
+        header("location: completeRegister.php");
+    }
 
         $conn = new conexaoBD();
 
