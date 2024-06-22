@@ -197,9 +197,14 @@ $cellFormatado = $usu_obj->formataCell();
                            </div>
 
                            <div class="col-span-2 sm:col-span-1">
+                              <label for="user_phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
+                              <input type="text" id="user_phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $cellFormatado; ?>" required />
+                           </div>
+
+                           <div class="col-span-2 sm:col-span-1">
                               <!-- Adicione um ID ao campo de endereço -->
                               <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Endereço</label>
-                              <input type="text" id="end" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuEnd ?>" required />
+                              <input type="text" id="end" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuEnd ?>" required />                              
                               <input type="hidden" id="latcampo" name="latcampo">
                               <input type="hidden" id="lngcampo" name="lngcampo">
                            </div>
@@ -269,40 +274,48 @@ $cellFormatado = $usu_obj->formataCell();
    </script>
 
 
-   <!-- Coloque esta parte depois de incluir a biblioteca do Google Places API -->
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
+  
+    <!-- script Google Places Autocomplete -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
 
-   <script>
-      // Aguarde o carregamento do DOM
-      document.addEventListener("DOMContentLoaded", function() {
-         // Inicializar o autocompletar no campo de endereço
-         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
+    <script>
+        // Inicializar o autocompletar no campo de endereço
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
 
-         // Adicionar ouvinte de evento para mudança no campo de endereço
-         autocomplete.addListener('place_changed', GetLatlong);
-      });
+        // Definir o tipo de autocompletar para endereços
+        autocomplete.setTypes(['address']);
 
-      function GetLatlong() {
-         var geocoder = new google.maps.Geocoder();
-         var address = document.getElementById('end').value;
+        // Adicionar ouvinte de evento para mudança no campo de endereço
+        autocomplete.addListener('place_changed', GetLatlong);
 
-         geocoder.geocode({
-            'address': address
-         }, function(results, status) {
+        // Modificar a função GetLatlong para ser chamada pelo evento submit do formulário
+        document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar o envio do formulário por enquanto
+            GetLatlong(); // Chamar a função para obter a latitude e a longitude
+            this.submit(); // Agora, enviar o formulário
+        });
+
+    function GetLatlong() {
+        var geocoder = new google.maps.Geocoder();
+        var address = document.getElementById('end').value;
+
+        geocoder.geocode({
+        'address': address
+        }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-               var latitude = results[0].geometry.location.lat();
-               var longitude = results[0].geometry.location.lng();
-               document.getElementById('latcampo').value = latitude;
-               document.getElementById('lngcampo').value = longitude;
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+                document.getElementById('latcampo').value = latitude;
+                document.getElementById('lngcampo').value = longitude;
             } else {
-               // Tratar o erro de geocodificação, se necessário
-               console.error('Geocodificação falhou com status: ' + status);
+                // Tratar o erro de geocodificação, se necessário
+                console.error('Geocodificação falhou com status: ' + status);
             }
-         });
-      }
-   </script>
+        });
+    }
 
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
+    </script>
+   
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 

@@ -73,8 +73,8 @@ try {
 
                     </button>
                     <a href="#" class="flex ms-2 md:me-24">
-                  <img src="../assets/images/Logo-Pro-Lixo-Azul-Crop.png" class="h-8 me-3" alt="Logo" />
-               </a>
+                        <img src="../assets/images/Logo-Pro-Lixo-Azul-Crop.png" class="h-8 me-3" alt="Logo" />
+                    </a>
                 </div>
 
             </div>
@@ -142,33 +142,38 @@ try {
 
 
 
-<div class="flex flex-col items-center justify-start h-64 mb-4 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-2 mb-2 pt-2 justify-center w-3/4 "> <!-- Bloco dos Cards -->
-        <?php
-        // Verificação se $consulta não está vazia
-        if (!empty($consulta)) {
-            foreach ($consulta as $linha) {
-                echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
-                echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
-                echo '<div class="grid grid-cols-3 justify-center mb-2">';
-                echo '<div class="col-span-2">';
-                echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
-                echo '<h6 class="text-xl font-bold mb-2">' . htmlspecialchars($linha['slc_materiais'], ENT_QUOTES, 'UTF-8') . '</h6>'; // Usando htmlspecialchars para segurança
-                echo '</div>';
-                echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1">';
-                echo htmlspecialchars($linha['slc_quantidade'], ENT_QUOTES, 'UTF-8') . ' Itens'; // Usando htmlspecialchars para segurança
-                echo '</button>';
-                echo '</div>';
-                echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
-                echo '</div>';
-                echo '</div>';
-            }
-        } else {
-            echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
-        }
-        ?>
-    </div>
-</div>
+        <div class="flex flex-col items-center justify-start h-64 mb-4 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-2 mb-2 pt-2 justify-center w-3/4 "> <!-- Bloco dos Cards -->
+                <?php
+                // Verificação se $consulta não está vazia
+                if (!empty($consulta)) {
+                    foreach ($consulta as $linha) {
+                        echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
+                        echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
+                        echo '<div class="grid grid-cols-3 justify-center mb-2">';
+                        echo '<div class="col-span-2">';
+                        echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
+                        echo '<h6 class="text-xl font-bold mb-2">' . htmlspecialchars($linha['slc_materiais'], ENT_QUOTES, 'UTF-8') . '</h6>'; // Usando htmlspecialchars para segurança
+                        echo '</div>';
+                        echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1" id="centerslc">';
+                        echo htmlspecialchars($linha['slc_quantidade'], ENT_QUOTES, 'UTF-8') . ' Itens'; // Usando htmlspecialchars para segurança
+                        echo '</button>';
+                        echo '</div>';
+                        echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
+                        echo '</div>';
+                        echo '<form>';
+                        echo '<input type="hidden" id="slclat" name="slclat">';
+                        echo '<input type="hidden" id="slclng" name="slclng">';
+                        echo '<input type="hidden" id="endUsu" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
+                        echo '</form>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
+                }
+                ?>
+            </div>
+        </div>
 
 
 
@@ -201,29 +206,34 @@ try {
             var usrlat = parseFloat(document.getElementById('usulat').value);
             var usrlng = parseFloat(document.getElementById('usulng').value);
             const {
-                Map, Marker
+                Map,
+                Marker
             } = await google.maps.importLibrary("maps");
 
             map = new Map(document.getElementById("map"), {
                 center: {
                     lat: usrlat,
-                    lng: usrlng 
+                    lng: usrlng
                 },
                 zoom: 18,
             });
 
-            const marker = new Marker({
+            const marker = new google.maps.Marker({
                 position: {
                     lat: usrlat,
                     lng: usrlng
                 },
                 map: map,
-                title: "Seu Endereço"
-            })
+                title: "Seu Endereço",
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                }
+            });
+
 
         }
 
-        //window.onload = initMap;
+        window.onload = initMap;
 
         initMap();
 
@@ -238,14 +248,59 @@ try {
                     var latitude = results[0].geometry.location.lat();
                     var longitude = results[0].geometry.location.lng();
 
-                    map.setCenter({ lat: latitude, lng: longitude });
+                    map.setCenter({
+                        lat: latitude,
+                        lng: longitude
+                    });
 
-                    marker.setPosition({ lat: latitude, lng: longitude });
+                    marker.setPosition({
+                        lat: latitude,
+                        lng: longitude
+                    });
                 } else {
                     console.error('Geocode was not successful for the following reason: ' + status);
                 }
             });
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            GetUsuLatlong();
+        });
+
+        function GetUsuLatlong() {
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('endUsu').value;
+
+            geocoder.geocode({
+                'address': address
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var latitudeUsu = results[0].geometry.location.lat();
+                    var longitudeUsu = results[0].geometry.location.lng();
+                    document.getElementById('slclat').value = latitudeUsu;
+                    document.getElementById('slclng').value = longitudeUsu;
+                } else {
+                    // Tratar o erro de geocodificação, se necessário
+                    console.error('Geocodificação falhou com status: ' + status);
+                }
+            });
+        }
+
+        function centerMapOnSelectedCoordinates() {
+            var latitude = parseFloat(document.getElementById('slclat').value);
+            var longitude = parseFloat(document.getElementById('slclng').value);
+
+            if (!isNaN(latitude) && !isNaN(longitude)) {
+                map.setCenter({ lat: latitude, lng: longitude });
+                marker.setPosition({ lat: latitude, lng: longitude });
+            } else {
+                console.error('Valores de latitude e longitude inválidos.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('centerslc').addEventListener('click', centerMapOnSelectedCoordinates);
+        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
 

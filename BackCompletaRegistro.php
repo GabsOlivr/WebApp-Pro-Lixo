@@ -50,6 +50,7 @@
                 header("location: ./userpages/mainSolicitante.php");
             }else{
                 header("location: ./userpages/mainColetor.php");
+                
             }
 
         } catch (PDOException $erro) {

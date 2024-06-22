@@ -44,6 +44,9 @@
                         $obj->usuSenha = $linha['usr_senha'];
                         $obj->usuIcone = $linha['usr_icone'];
                         $obj->usuTipo = $linha['usr_tipo'];
+                        $usu_obj->usuEnd = $usrend;
+                        $usu_obj->usuLat = $usrlat;
+                        $usu_obj->usuLng = $usrlng;
 
                         $txtres = "SELECT end_completo FROM end_endereco JOIN usr_usuario USING(usr_id) WHERE usr_id = '".$obj->usuId."'";
                         $consultaEnd = $conecta->query($txtres);
