@@ -3,7 +3,6 @@
     require("conexao.php");
     require("usrclass.php");
 
-    //if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['entrar'])) {
     if($_SERVER['REQUEST_METHOD']=="POST"){
 
         $usremail=$_POST['usremail'];
@@ -22,8 +21,7 @@
                 $hash = $linha['usr_senha'];
             }
             if (is_null($hash)) {
-                //Mudei o echo pra voltar pra tela de login depois do alert,
-                //mas talvez isso aqui mude, pq é client-side e etc
+                
                 echo "
                     <script>
                     alert('Usuário inexistente!');
@@ -34,7 +32,7 @@
             else {
                 if (password_verify($usrpass, $hash)) {
                     
-                    $txtdois = "SELECT * FROM usr_usuario WHERE usr_email = '".$usremail."'";
+                    $txtdois = "SELECT usr_id, usr_celular, usr_email, usr_senha, usr_icone, usr_tipo, end_completo, end_latitude, end_longitude  FROM usr_usuario LEFT JOIN end_endereco USING (usr_id) WHERE usr_email = '".$usremail."'";
                     $consulta=$conecta->query($txtdois);
                     foreach($consulta as $linha){
                         $obj->usuId = $linha['usr_id'];
@@ -44,9 +42,9 @@
                         $obj->usuSenha = $linha['usr_senha'];
                         $obj->usuIcone = $linha['usr_icone'];
                         $obj->usuTipo = $linha['usr_tipo'];
-                        $usu_obj->usuEnd = $usrend;
-                        $usu_obj->usuLat = $usrlat;
-                        $usu_obj->usuLng = $usrlng;
+                        $obj->usuEnd = $linha['end_completo'];
+                        $obj->usuLat = $linha['end_latitude'];
+                        $obj->usuLng = $linha['end_longitude'];
 
                         $txtres = "SELECT end_completo FROM end_endereco JOIN usr_usuario USING(usr_id) WHERE usr_id = '".$obj->usuId."'";
                         $consultaEnd = $conecta->query($txtres);
@@ -74,7 +72,6 @@
                     }
                     
                 } else {
-                    //Aqui a mesma coisa, coloquei redirecionamento, mas é client-side oq é meio pá
                     echo "
                     <script>
                     alert('Senha inválida.');

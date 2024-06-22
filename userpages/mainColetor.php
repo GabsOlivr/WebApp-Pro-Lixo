@@ -202,7 +202,6 @@ $cellFormatado = $usu_obj->formataCell();
                            </div>
 
                            <div class="col-span-2 sm:col-span-1">
-                              <!-- Adicione um ID ao campo de endereço -->
                               <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Endereço</label>
                               <input type="text" id="end" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuEnd ?>" required />                              
                               <input type="hidden" id="latcampo" name="latcampo">
@@ -216,7 +215,7 @@ $cellFormatado = $usu_obj->formataCell();
 
                            <div class="col-span-2">
                               <div class=" flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
-                                 <!-- Adicionando classes de alinhamento -->
+                                 
                                  <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
                               </div>
                               <button type="button" class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Trocar icone</button>
@@ -279,20 +278,20 @@ $cellFormatado = $usu_obj->formataCell();
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
 
     <script>
-        // Inicializar o autocompletar no campo de endereço
+        
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
 
-        // Definir o tipo de autocompletar para endereços
+        
         autocomplete.setTypes(['address']);
 
-        // Adicionar ouvinte de evento para mudança no campo de endereço
+        
         autocomplete.addListener('place_changed', GetLatlong);
 
-        // Modificar a função GetLatlong para ser chamada pelo evento submit do formulário
+        
         document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar o envio do formulário por enquanto
-            GetLatlong(); // Chamar a função para obter a latitude e a longitude
-            this.submit(); // Agora, enviar o formulário
+            event.preventDefault(); 
+            GetLatlong(); 
+            this.submit(); 
         });
 
     function GetLatlong() {
@@ -308,7 +307,6 @@ $cellFormatado = $usu_obj->formataCell();
                 document.getElementById('latcampo').value = latitude;
                 document.getElementById('lngcampo').value = longitude;
             } else {
-                // Tratar o erro de geocodificação, se necessário
                 console.error('Geocodificação falhou com status: ' + status);
             }
         });
