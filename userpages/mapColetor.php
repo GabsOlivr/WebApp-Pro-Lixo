@@ -148,25 +148,44 @@ try {
                 // Verificação se $consulta não está vazia
                 if (!empty($consulta)) {
                     foreach ($consulta as $linha) {
+                        $idslc =  htmlspecialchars($linha['slc_id'], ENT_QUOTES, 'UTF-8');
                         echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
                         echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
                         echo '<div class="grid grid-cols-3 justify-center mb-2">';
                         echo '<div class="col-span-2">';
                         echo '<p class="text-gray-700 text-sm">Materiais para a coleta:</p>';
-                        echo '<h6 class="text-xl font-bold mb-2">' . htmlspecialchars($linha['slc_materiais'], ENT_QUOTES, 'UTF-8') . '</h6>'; // Usando htmlspecialchars para segurança
+                        echo '<h6 class="text-xl font-bold mb-2">' . htmlspecialchars($linha['slc_materiais'], ENT_QUOTES, 'UTF-8') . ' -  ' . htmlspecialchars($linha['slc_quantidade'], ENT_QUOTES, 'UTF-8') . ' Itens </h6>'; // Usando htmlspecialchars para segurança
                         echo '</div>';
-                        echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1" id="centerslc">';
-                        echo htmlspecialchars($linha['slc_quantidade'], ENT_QUOTES, 'UTF-8') . ' Itens'; // Usando htmlspecialchars para segurança
+                        echo '<button class="mt-2 bg-gray-400 hover:bg-blue-700 text-white font-bold py-3 px-2 rounded-pattern-1 ml-3 col-span-1" id="centerslc' . $idslc . '">';
+                        echo 'Ver no Mapa';
                         echo '</button>';
                         echo '</div>';
                         echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
                         echo '</div>';
                         echo '<form>';
-                        echo '<input type="hidden" id="slclat" name="slclat">';
-                        echo '<input type="hidden" id="slclng" name="slclng">';
-                        echo '<input type="hidden" id="endUsu" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
+                        echo '<input type="hidden" id="slclat' . $idslc  . '" name="slclat">';
+                        echo '<input type="hidden" id="slclng' . $idslc  . '" name="slclng">';
+                        echo '<input type="hidden" id="endUsu' . $idslc  . '" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
                         echo '</form>';
                         echo '</div>';
+
+                        echo "<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var idlat = 'slclat" . $idslc . "';
+                    var idlng = 'slclng" . $idslc . "';
+                    var idend = 'endUsu" . $idslc . "';
+                    GetUsuLatlong(idlat, idlng, idend);
+
+                    var elementId = 'centerslc" . $idslc  . "';
+                    var element = document.getElementById(elementId);
+                    if (element) {
+                        element.addEventListener('click', function() {
+                            centerMapOnSelectedCoordinates(idlat, idlng);
+                            
+                        });
+                    }
+                });
+            </script>";
                     }
                 } else {
                     echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
@@ -200,7 +219,7 @@ try {
 
     <script>
         let map;
-        let marker;
+        let marker; // Declaração global
 
         async function initMap() {
             var usrlat = parseFloat(document.getElementById('usulat').value);
@@ -215,10 +234,12 @@ try {
                     lat: usrlat,
                     lng: usrlng
                 },
-                zoom: 18,
+                zoom: 14,
             });
 
-            const marker = new google.maps.Marker({
+            // Remova a declaração const marker dentro desta função
+
+            marker = new google.maps.Marker({ 
                 position: {
                     lat: usrlat,
                     lng: usrlng
@@ -229,9 +250,10 @@ try {
                     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                 }
             });
-
-
         }
+
+
+
 
         window.onload = initMap;
 
@@ -263,13 +285,10 @@ try {
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            GetUsuLatlong();
-        });
 
-        function GetUsuLatlong() {
+        function GetUsuLatlong(idlat, idlng, idend) {
             var geocoder = new google.maps.Geocoder();
-            var address = document.getElementById('endUsu').value;
+            var address = document.getElementById(idend).value;
 
             geocoder.geocode({
                 'address': address
@@ -277,8 +296,8 @@ try {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latitudeUsu = results[0].geometry.location.lat();
                     var longitudeUsu = results[0].geometry.location.lng();
-                    document.getElementById('slclat').value = latitudeUsu;
-                    document.getElementById('slclng').value = longitudeUsu;
+                    document.getElementById(idlat).value = latitudeUsu;
+                    document.getElementById(idlng).value = longitudeUsu;
                 } else {
                     // Tratar o erro de geocodificação, se necessário
                     console.error('Geocodificação falhou com status: ' + status);
@@ -286,21 +305,41 @@ try {
             });
         }
 
-        function centerMapOnSelectedCoordinates() {
-            var latitude = parseFloat(document.getElementById('slclat').value);
-            var longitude = parseFloat(document.getElementById('slclng').value);
+        function createMarker(lat, lng) {
+            new google.maps.Marker({
+                position: {
+                    lat: lat,
+                    lng: lng
+                },
+                map: map,
+                title: "Marcador",
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            });
+        }
+
+        function centerMapOnSelectedCoordinates(idlat, idlng) {
+            var latitude = parseFloat(document.getElementById(idlat).value);
+            var longitude = parseFloat(document.getElementById(idlng).value);
 
             if (!isNaN(latitude) && !isNaN(longitude)) {
-                map.setCenter({ lat: latitude, lng: longitude });
-                marker.setPosition({ lat: latitude, lng: longitude });
+                map.setCenter({
+                    lat: latitude,
+                    lng: longitude
+                });
+                
+                createMarker(latitude, longitude);
+
             } else {
                 console.error('Valores de latitude e longitude inválidos.');
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('centerslc').addEventListener('click', centerMapOnSelectedCoordinates);
-        });
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('centerslc').addEventListener('click', centerMapOnSelectedCoordinates);
+        // });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
 

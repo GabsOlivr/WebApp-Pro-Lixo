@@ -41,7 +41,7 @@ if (isset($_SESSION['usr_obj'])) {
                     <label for="revelpassword">Ver senha</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="signupCheck" />
+                    <input type="checkbox" id="signupCheck" required />
                     <label for="signupCheck">Concordo com todos os <a href="./docs/Termos e Condições de Uso.pdf" download onclick="window.open(this.href, '_blank'); return false;" style="color:#fff;"> termos e condições</a></label>
                     
                 </div>
