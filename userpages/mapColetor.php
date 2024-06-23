@@ -19,8 +19,6 @@ if (isset($_SESSION['usr_obj'])) {
         window.location.href = '../index.php';
         </script>
     ";
-    //Por enquanto esse header pode ficar comentado
-    //header("location: index.php");
 }
 
 $nome = $usu_obj->primeiroNome();
@@ -133,7 +131,7 @@ try {
                 <div class="bg-gray-100 rounded-lg p-2 shadow-xl w-full">
                     <h6 class="text-xl font-bold mb-2">Mapa de Coleta</h6>
                     <div id="map" class="map h-64 rounded-lg mb-4">
-                    </div> <!-- Placeholder do mapa -->
+                    </div>
                     <p class="text-gray-700">Visualize as solicitações de coleta em um mapa interativo.</p>
                 </div>
             </div>
@@ -145,11 +143,10 @@ try {
         <div class="flex flex-col items-center justify-start h-64 mb-4 w-full lg:w-1/2 mx-auto bg-gray-100 rounded-lg shadow-xl overflow-y-auto">
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-28 mt-2 mb-2 pt-2 justify-center w-3/4 "> <!-- Bloco dos Cards -->
                 <?php
-                // Verificação se $consulta não está vazia
                 if (!empty($consulta)) {
                     foreach ($consulta as $linha) {
-                        $idslc = htmlspecialchars($linha['slc_id'], ENT_QUOTES, 'UTF-8');
-                        echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
+                        $idslc =  htmlspecialchars($linha['slc_id'], ENT_QUOTES, 'UTF-8');
+                        echo '<div class="flex items-center justify-center mb-4">';
                         echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
                         echo '<div class="grid grid-cols-3 justify-center mb-2">';
                         echo '<div class="col-span-2">';
@@ -160,39 +157,37 @@ try {
                         echo 'Ver no Mapa';
                         echo '</button>';
                         echo '</div>';
-                        echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
+                        echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>';
                         echo '</div>';
                         echo '<form>';
-                        echo '<input type="hidden" id="slclat' . $idslc . '" name="slclat">';
-                        echo '<input type="hidden" id="slclng' . $idslc . '" name="slclng">';
-                        echo '<input type="hidden" id="endUsu' . $idslc . '" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
+                        echo '<input type="hidden" id="slclat' . $idslc  . '" name="slclat">';
+                        echo '<input type="hidden" id="slclng' . $idslc  . '" name="slclng">';
+                        echo '<input type="hidden" id="endUsu' . $idslc  . '" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
                         echo '</form>';
                         echo '</div>';
 
                         echo "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var idlat = 'slclat" . $idslc . "';
-                var idlng = 'slclng" . $idslc . "';
-                var idend = 'endUsu" . $idslc . "';
-                GetUsuLatlong(idlat, idlng, idend, function() {
-                    createMarker(parseFloat(document.getElementById(idlat).value), parseFloat(document.getElementById(idlng).value));
-                });
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var idlat = 'slclat" . $idslc . "';
+                                    var idlng = 'slclng" . $idslc . "';
+                                    var idend = 'endUsu" . $idslc . "';
+                                    GetUsuLatlong(idlat, idlng, idend);
 
-                var elementId = 'centerslc" . $idslc  . "';
-                var element = document.getElementById(elementId);
-                if (element) {
-                    element.addEventListener('click', function() {
-                        centerMapOnSelectedCoordinates(idlat, idlng);
-                    });
-                }
-            });
-        </script>";
+                                    var elementId = 'centerslc" . $idslc  . "';
+                                    var element = document.getElementById(elementId);
+                                    if (element) {
+                                        element.addEventListener('click', function() {
+                                            centerMapOnSelectedCoordinates(idlat, idlng);
+                            
+                                        });
+                                    }
+                                });
+                            </script>";
                     }
                 } else {
                     echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
                 }
                 ?>
-
             </div>
         </div>
 
@@ -221,7 +216,7 @@ try {
 
     <script>
         let map;
-        let marker; // Declaração global
+        let marker;
 
         async function initMap() {
             var usrlat = parseFloat(document.getElementById('usulat').value);
@@ -239,7 +234,7 @@ try {
                 zoom: 14,
             });
 
-            marker = new google.maps.Marker({
+            marker = new google.maps.Marker({ 
                 position: {
                     lat: usrlat,
                     lng: usrlng
@@ -253,6 +248,8 @@ try {
         }
 
         window.onload = initMap;
+
+        initMap();
 
         function GetLatlong() {
             var geocoder = new google.maps.Geocoder();
@@ -280,7 +277,7 @@ try {
             });
         }
 
-        function GetUsuLatlong(idlat, idlng, idend, callback) {
+        function GetUsuLatlong(idlat, idlng, idend) {
             var geocoder = new google.maps.Geocoder();
             var address = document.getElementById(idend).value;
 
@@ -292,10 +289,6 @@ try {
                     var longitudeUsu = results[0].geometry.location.lng();
                     document.getElementById(idlat).value = latitudeUsu;
                     document.getElementById(idlng).value = longitudeUsu;
-
-                    if (typeof callback === 'function') {
-                        callback();
-                    }
                 } else {
                     console.error('Geocodificação falhou com status: ' + status);
                 }
@@ -325,21 +318,16 @@ try {
                     lat: latitude,
                     lng: longitude
                 });
+                
+                createMarker(latitude, longitude);
+
             } else {
                 console.error('Valores de latitude e longitude inválidos.');
             }
         }
 
-
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     document.getElementById('centerslc').addEventListener('click', centerMapOnSelectedCoordinates);
-        // });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&callback=initMap" async defer></script>
-
-
-
 
 
     <!-- https://flowbite.com/docs/components/sidebar/ -->
