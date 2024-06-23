@@ -148,7 +148,7 @@ try {
                 // Verificação se $consulta não está vazia
                 if (!empty($consulta)) {
                     foreach ($consulta as $linha) {
-                        $idslc =  htmlspecialchars($linha['slc_id'], ENT_QUOTES, 'UTF-8');
+                        $idslc = htmlspecialchars($linha['slc_id'], ENT_QUOTES, 'UTF-8');
                         echo '<div class="flex items-center justify-center mb-4">'; // Adicionei "mb-4" para espaçamento entre itens
                         echo '<div class="bg-white rounded-lg p-4 shadow-xl w-full">';
                         echo '<div class="grid grid-cols-3 justify-center mb-2">';
@@ -163,9 +163,9 @@ try {
                         echo '<p class="text-gray-700">' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '.</p>'; // Usando htmlspecialchars para segurança
                         echo '</div>';
                         echo '<form>';
-                        echo '<input type="hidden" id="slclat' . $idslc  . '" name="slclat">';
-                        echo '<input type="hidden" id="slclng' . $idslc  . '" name="slclng">';
-                        echo '<input type="hidden" id="endUsu' . $idslc  . '" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
+                        echo '<input type="hidden" id="slclat' . $idslc . '" name="slclat">';
+                        echo '<input type="hidden" id="slclng' . $idslc . '" name="slclng">';
+                        echo '<input type="hidden" id="endUsu' . $idslc . '" name="endUsu" value="' . htmlspecialchars($linha['end_completo'], ENT_QUOTES, 'UTF-8') . '">';
                         echo '</form>';
                         echo '</div>';
 
@@ -176,15 +176,15 @@ try {
                 var idend = 'endUsu" . $idslc . "';
                 GetUsuLatlong(idlat, idlng, idend, function() {
                     createMarker(parseFloat(document.getElementById(idlat).value), parseFloat(document.getElementById(idlng).value));
-
-                    var elementId = 'centerslc" . $idslc  . "';
-                    var element = document.getElementById(elementId);
-                    if (element) {
-                        element.addEventListener('click', function() {
-                            centerMapOnSelectedCoordinates(idlat, idlng);
-                        });
-                    }
                 });
+
+                var elementId = 'centerslc" . $idslc  . "';
+                var element = document.getElementById(elementId);
+                if (element) {
+                    element.addEventListener('click', function() {
+                        centerMapOnSelectedCoordinates(idlat, idlng);
+                    });
+                }
             });
         </script>";
                     }
@@ -192,6 +192,7 @@ try {
                     echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
                 }
                 ?>
+
             </div>
         </div>
 
@@ -238,8 +239,6 @@ try {
                 zoom: 14,
             });
 
-            // Remova a declaração const marker dentro desta função
-
             marker = new google.maps.Marker({
                 position: {
                     lat: usrlat,
@@ -254,8 +253,6 @@ try {
         }
 
         window.onload = initMap;
-
-        initMap();
 
         function GetLatlong() {
             var geocoder = new google.maps.Geocoder();
@@ -282,7 +279,6 @@ try {
                 }
             });
         }
-
 
         function GetUsuLatlong(idlat, idlng, idend, callback) {
             var geocoder = new google.maps.Geocoder();
@@ -329,13 +325,11 @@ try {
                     lat: latitude,
                     lng: longitude
                 });
-
-
-
             } else {
                 console.error('Valores de latitude e longitude inválidos.');
             }
         }
+
 
 
         // document.addEventListener('DOMContentLoaded', function() {
