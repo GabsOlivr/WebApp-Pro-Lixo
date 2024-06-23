@@ -170,22 +170,23 @@ try {
                         echo '</div>';
 
                         echo "<script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var idlat = 'slclat" . $idslc . "';
-                    var idlng = 'slclng" . $idslc . "';
-                    var idend = 'endUsu" . $idslc . "';
-                    GetUsuLatlong(idlat, idlng, idend);
+            document.addEventListener('DOMContentLoaded', function() {
+                var idlat = 'slclat" . $idslc . "';
+                var idlng = 'slclng" . $idslc . "';
+                var idend = 'endUsu" . $idslc . "';
+                GetUsuLatlong(idlat, idlng, idend, function() {
+                    createMarker(parseFloat(document.getElementById(idlat).value), parseFloat(document.getElementById(idlng).value));
 
                     var elementId = 'centerslc" . $idslc  . "';
                     var element = document.getElementById(elementId);
                     if (element) {
                         element.addEventListener('click', function() {
                             centerMapOnSelectedCoordinates(idlat, idlng);
-                            
                         });
                     }
                 });
-            </script>";
+            });
+        </script>";
                     }
                 } else {
                     echo '<p class="text-gray-700">Nenhum dado encontrado.</p>';
@@ -239,7 +240,7 @@ try {
 
             // Remova a declaração const marker dentro desta função
 
-            marker = new google.maps.Marker({ 
+            marker = new google.maps.Marker({
                 position: {
                     lat: usrlat,
                     lng: usrlng
@@ -251,9 +252,6 @@ try {
                 }
             });
         }
-
-
-
 
         window.onload = initMap;
 
@@ -286,7 +284,7 @@ try {
         }
 
 
-        function GetUsuLatlong(idlat, idlng, idend) {
+        function GetUsuLatlong(idlat, idlng, idend, callback) {
             var geocoder = new google.maps.Geocoder();
             var address = document.getElementById(idend).value;
 
@@ -298,8 +296,11 @@ try {
                     var longitudeUsu = results[0].geometry.location.lng();
                     document.getElementById(idlat).value = latitudeUsu;
                     document.getElementById(idlng).value = longitudeUsu;
+
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
                 } else {
-                    // Tratar o erro de geocodificação, se necessário
                     console.error('Geocodificação falhou com status: ' + status);
                 }
             });
@@ -328,8 +329,8 @@ try {
                     lat: latitude,
                     lng: longitude
                 });
-                
-                createMarker(latitude, longitude);
+
+
 
             } else {
                 console.error('Valores de latitude e longitude inválidos.');
