@@ -3,6 +3,13 @@
 require("conexao.php");
 require("usrclass.php");
 
+function log_unsuccessful_login($email, $password) {
+    $log_file = 'falha_logins.txt';
+    $current_time = date('Y-m-d H:i:s');
+    $log_entry = "Time: $current_time, Email: $email, Password: $password\n";
+    file_put_contents($log_file, $log_entry, FILE_APPEND);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $usremail = trim($_POST['usremail']);
     $usrpass = trim($_POST['usrsenha']);
@@ -21,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $hash = $stmt->fetchColumn();
 
         if ($hash === false) {
+            log_unsuccessful_login($usremail, $usrpass);
             echo "
                 <script>
                 alert('Usuário inexistente!');
@@ -64,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     exit();
                 }
             } else {
+                log_unsuccessful_login($usremail, $usrpass);
                 echo "
                 <script>
                 alert('Senha inválida.');
