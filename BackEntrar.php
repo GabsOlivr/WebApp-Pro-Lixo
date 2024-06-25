@@ -4,9 +4,9 @@ require("conexao.php");
 require("usrclass.php");
 
 function log_unsuccessful_login($email, $password) {
-    $log_file = 'falha_logins.txt';
+    $log_file = 'fail_singin.txt';
     $current_time = date('Y-m-d H:i:s');
-    $log_entry = "Time: $current_time, Email: $email, Password: $password\n";
+    $log_entry = "\n Informações:\n Horário: $current_time, E-mail: $email, Senha: $password\n";
     file_put_contents($log_file, $log_entry, FILE_APPEND);
 }
 
