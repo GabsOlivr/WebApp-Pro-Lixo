@@ -21,7 +21,7 @@ if (isset($_SESSION['usr_obj'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pro-Lixo</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
@@ -43,7 +43,7 @@ if (isset($_SESSION['usr_obj'])) {
                 <div class="checkbox">
                     <input type="checkbox" id="signupCheck" required />
                     <label for="signupCheck">Concordo com todos os <a href="./docs/Termos e Condições de Uso.pdf" download onclick="window.open(this.href, '_blank'); return false;" style="color:#fff;"> termos e condições</a></label>
-                    
+
                 </div>
                 <input type="submit" name="cadastrar" value="Registrar" />
             </form>
@@ -59,8 +59,6 @@ if (isset($_SESSION['usr_obj'])) {
                 }
             });
         </script>
-
-        <!-- ---------------------- -->
 
         <div class="form login">
             <header>Login</header>
@@ -87,7 +85,6 @@ if (isset($_SESSION['usr_obj'])) {
         </script>
 
         <script>
-            // INICIO TRANSIÇÃO LOGIN/REGISTRAR
             const wrapper = document.querySelector(".wrapper"),
                 signupHeader = document.querySelector(".signup header"),
                 LoginHeader = document.querySelector(".login header");
@@ -98,9 +95,7 @@ if (isset($_SESSION['usr_obj'])) {
             signupHeader.addEventListener("click", () => {
                 wrapper.classList.remove("active");
             })
-            // FIM TRANSIÇÃO LOGIN/REGISTRAR
 
-            // INICIO VALIDA EMAIL
             document.getElementById('signupForm').addEventListener('submit', function(event) {
                 var emailInput = document.getElementById('email');
                 var email = emailInput.value.trim();
@@ -108,20 +103,17 @@ if (isset($_SESSION['usr_obj'])) {
 
                 if (!isValidEmail(email)) {
                     emailError.textContent = 'Por favor, insira um endereço de e-mail válido.';
-                    event.preventDefault(); // Impede o envio do formulário se o e-mail não for válido
+                    event.preventDefault();
                 } else {
-                    emailError.textContent = ''; // Limpa a mensagem de erro se o e-mail for válido
+                    emailError.textContent = '';
                 }
             });
 
             function isValidEmail(email) {
-                // Expressão regular para validar o formato do e-mail
                 var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailRegex.test(email);
             }
-            // FIM VALIDA EMAIL
 
-            // INICIO RESTRINJE NOME
             const nameInput = document.getElementById('name');
             const nameError = document.getElementById('nameError');
 
@@ -129,16 +121,15 @@ if (isset($_SESSION['usr_obj'])) {
                 const name = nameInput.value.trim();
                 if (name.length < 8 || name.length > 50) {
                     nameError.textContent = 'O nome deve ter entre 8 e 50 caracteres.';
-                    nameInput.setCustomValidity(''); // Limpa a validação padrão do browser
-                    nameInput.reportValidity(); // Exibe a mensagem de erro personalizada
+                    nameInput.setCustomValidity('');
+                    nameInput.reportValidity();
                 } else {
                     nameError.textContent = '';
-                    nameInput.setCustomValidity(''); // Limpa a validação personalizada se estiver correta
+                    nameInput.setCustomValidity('');
                 }
             });
-            // FIM RESTRINJE NOME
 
-            // VALIDA SENHA
+
             const senhaInput = document.getElementById('senha');
             const senhaError = document.getElementById('senhaError');
 
@@ -147,11 +138,11 @@ if (isset($_SESSION['usr_obj'])) {
                 const senhaValida = validarSenha(senha);
                 if (!senhaValida) {
                     senhaError.textContent = 'Minimo de 8 caracteres, pelo menos 1 letra maiúscula, 1 número e 1 caractere especial.';
-                    senhaInput.setCustomValidity(''); // Limpa a validação padrão do browser
-                    senhaInput.reportValidity(); // Exibe a mensagem de erro personalizada
+                    senhaInput.setCustomValidity('');
+                    senhaInput.reportValidity();
                 } else {
                     senhaError.textContent = '';
-                    senhaInput.setCustomValidity(''); // Limpa a validação personalizada se estiver correta
+                    senhaInput.setCustomValidity('');
                 }
 
             });
@@ -160,7 +151,6 @@ if (isset($_SESSION['usr_obj'])) {
                 const regexSenha = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/;
                 return regexSenha.test(senha);
             }
-            // FIM - VALIDA SENHA
         </script>
     </section>
 </body>

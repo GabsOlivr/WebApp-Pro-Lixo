@@ -20,8 +20,7 @@ if (isset($_SESSION['usr_obj'])) {
         window.location.href = '../index.php';
         </script>
     ";
-   //Por enquanto esse header pode ficar comentado
-   //header("location: index.php");
+
 }
 
 $nome = $usu_obj->primeiroNome();
@@ -37,9 +36,8 @@ $cellFormatado = $usu_obj->formataCell();
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="../dist/output.css" rel="stylesheet">
-
-   <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+   <title>Pro-Lixo</title>
+   <script>   
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
          document.documentElement.classList.add('dark');
       } else {
@@ -62,7 +60,7 @@ $cellFormatado = $usu_obj->formataCell();
 
                </button>
                <a href="#" class="flex ms-2 md:me-24">
-                  <img src="../assets/images/" class="h-8 me-3" alt="" /> <!--LOGO NAVBAR -->
+                  <img src="../assets/images/" class="h-8 me-3" alt="" />
                   <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-blue-700 dark:text-white">Pro-Lixo</span>
                </a>
             </div>
@@ -83,15 +81,6 @@ $cellFormatado = $usu_obj->formataCell();
                   <span class="ms-3">Dashboard</span>
                </a>
             </li>
-            <!-- <li>
-               <a href="./mapColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                  </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Solicitações</span>
-
-               </a>
-            </li> -->
             <li>
                <a href="./mainColetor.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -119,8 +108,7 @@ $cellFormatado = $usu_obj->formataCell();
                <div class="p-4 flex flex-col justify-between leading-normal">
 
                   <div class="text-gray-900 font-bold text-xl mb-2">Bem vindo, <?php echo $nome; ?></div>
-                  <div class="idade flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
-                     <!-- Adicionando classes de alinhamento -->
+                  <div class="idade flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">                     
                      <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
                   </div>
 
@@ -143,7 +131,7 @@ $cellFormatado = $usu_obj->formataCell();
       </div>
 
 
-      <div class="p-4  mt-5 mb-4 "> <!-- Div do Gráfico é bom dimaizi meuamigo-->
+      <div class="p-4  mt-5 mb-4 ">
          <div class="grid grid-cols-1 gap-4 mb-2  justify-center">      
             <div class="flex items-center justify-center">
                <div class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-2xl ">
@@ -157,7 +145,7 @@ $cellFormatado = $usu_obj->formataCell();
       <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
          <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
             <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
-               © 2024 <a href="https://flowbite.com/" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
+               © 2024 <a href="#" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
             </span>
          </div>
       </footer>
@@ -173,8 +161,7 @@ $cellFormatado = $usu_obj->formataCell();
          });
       });
    </script>
-
-   <!-- https://flowbite.com/docs/components/sidebar/ -->
+   
 </body>
 
 </html>

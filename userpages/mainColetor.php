@@ -20,8 +20,6 @@ if (isset($_SESSION['usr_obj'])) {
         window.location.href = '../index.php';
         </script>
     ";
-   //Por enquanto esse header pode ficar comentado
-   //header("location: index.php");
 }
 
 $nome = $usu_obj->primeiroNome();
@@ -38,10 +36,9 @@ $cellFormatado = $usu_obj->formataCell();
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="../dist/output.css" rel="stylesheet">
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
-
-
+   <title>Pro-Lixo</title>
+   
    <script>
-      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
          document.documentElement.classList.add('dark');
       } else {
@@ -76,15 +73,6 @@ $cellFormatado = $usu_obj->formataCell();
    <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-blue-700 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
       <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
-            <!-- <li>
-               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                  </svg>
-                  <span class="ms-3">Dashboard</span>
-               </a>
-            </li> -->
             <li>
                <button data-modal-target="profile-modal" data-modal-toggle="profile-modal" type="button">
                   <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -95,7 +83,6 @@ $cellFormatado = $usu_obj->formataCell();
                   </a>
                </button>
             </li>
-
             <li>
                <button>
                   <a href="logout.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -110,9 +97,6 @@ $cellFormatado = $usu_obj->formataCell();
       </div>
    </aside>
 
-
-
-
    <div class="p-4 sm:ml-64">
       <div class="flex flex-col items-center justify-center h-auto mb-4 w-full lg:w-1/2 mx-auto"> <!-- Div Card Perfil -->
          <div class="mt-14 mb-4 max-w-lg w-full lg:max-w-full lg:flex justify-center text-center">
@@ -121,7 +105,6 @@ $cellFormatado = $usu_obj->formataCell();
 
                   <div class="text-gray-900 font-bold text-xl mb-2">Bem vindo, <?php echo $nome; ?></div>
                   <div class="idade flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
-                     <!-- Adicionando classes de alinhamento -->
                      <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
                   </div>
 
@@ -146,7 +129,7 @@ $cellFormatado = $usu_obj->formataCell();
 
 
 
-      <div class="p-4  mt-5 mb-4 "> <!-- Div blocos duplos -->
+      <div class="p-4  mt-5 mb-4 ">
          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2  justify-center">
             <div class="flex items-center justify-center">
                <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
@@ -165,74 +148,16 @@ $cellFormatado = $usu_obj->formataCell();
                </div>
             </div>
 
-            <!-- Main modal -->
-            <div id="profile-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-               <div class="relative p-4 w-full max-w-sm max-h-full">
-                  <!-- Modal content -->
+            <div id="profile-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+               <div class="relative p-4 w-full max-w-2xl max-h-full">
                   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                     <!-- Modal header -->
-                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                           Minhas Informações
-                        </h3>
-                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
-                           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                           </svg>
-                           <span class="sr-only">Close modal</span>
-                        </button>
+                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                        <button data-modal-hide="static-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
                      </div>
-                     <!-- Modal body -->
-                     <form method="POST" action="salvaSolicita.php" class="p-4 md:p-5">
-                        <div class="grid gap-4 mb-4 grid-cols-2">
-
-                           <div class="col-span-2 sm:col-span-1">
-                              <label for="user_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                              <input type="text" id="user_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuNome ?>" required />
-                           </div>
-
-                           <div class="col-span-2 sm:col-span-1">
-                              <label for="user_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
-                              <input type="text" id="user_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuEmail ?>" required />
-                           </div>
-
-                           <div class="col-span-2 sm:col-span-1">
-                              <label for="user_phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
-                              <input type="text" id="user_phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $cellFormatado; ?>" required />
-                           </div>
-
-                           <div class="col-span-2 sm:col-span-1">
-                              <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Endereço</label>
-                              <input type="text" id="end" name="end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo "" . $usu_obj->usuEnd ?>" required />                              
-                              <input type="hidden" id="latcampo" name="latcampo">
-                              <input type="hidden" id="lngcampo" name="lngcampo">
-                           </div>
-
-                           <div class="col-span-2">
-                              <label for="user_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
-                              <input type="text" id="user_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Escreva uma nova senha" required />
-                           </div>
-
-                           <div class="col-span-2">
-                              <div class=" flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
-                                 
-                                 <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
-                              </div>
-                              <button type="button" class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Trocar icone</button>
-                           </div>
-                        </div>
-                        <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                           <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                           </svg>
-                           Solicitar coleta
-                        </button>
-                     </form>
                   </div>
                </div>
             </div>
-
-
             <div class="flex items-center justify-center">
                <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                   <h6 class="mb-2 text-2xl font-bold text-gray-900">Manual e Informações</h6>
@@ -255,7 +180,7 @@ $cellFormatado = $usu_obj->formataCell();
       <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
          <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
             <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
-               © 2024 <a href="https://flowbite.com/" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
+               © 2024 <a href="#" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
             </span>
          </div>
       </footer>
@@ -271,59 +196,40 @@ $cellFormatado = $usu_obj->formataCell();
          });
       });
    </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
 
+   <script>
+      var autocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
+      autocomplete.setTypes(['address']);
+      autocomplete.addListener('place_changed', GetLatlong);
 
-  
-    <!-- script Google Places Autocomplete -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
+      document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
+         event.preventDefault();
+         GetLatlong();
+         this.submit();
+      });
 
-    <script>
-        
-        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
+      function GetLatlong() {
+         var geocoder = new google.maps.Geocoder();
+         var address = document.getElementById('end').value;
 
-        
-        autocomplete.setTypes(['address']);
-
-        
-        autocomplete.addListener('place_changed', GetLatlong);
-
-        
-        document.getElementById('completaRegistr0').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            GetLatlong(); 
-            this.submit(); 
-        });
-
-    function GetLatlong() {
-        var geocoder = new google.maps.Geocoder();
-        var address = document.getElementById('end').value;
-
-        geocoder.geocode({
-        'address': address
-        }, function(results, status) {
+         geocoder.geocode({
+            'address': address
+         }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-                document.getElementById('latcampo').value = latitude;
-                document.getElementById('lngcampo').value = longitude;
+               var latitude = results[0].geometry.location.lat();
+               var longitude = results[0].geometry.location.lng();
+               document.getElementById('latcampo').value = latitude;
+               document.getElementById('lngcampo').value = longitude;
             } else {
-                console.error('Geocodificação falhou com status: ' + status);
+               console.error('Geocodificação falhou com status: ' + status);
             }
-        });
-    }
-
-    </script>
-   
+         });
+      }
+   </script>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
-
-
-
-
-
-
-   <!-- https://flowbite.com/docs/components/sidebar/ -->
 </body>
 
 </html>

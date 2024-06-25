@@ -20,16 +20,12 @@ if (isset($_SESSION['usr_obj'])) {
         window.location.href = '../index.php';
         </script>
     ";
-   //Por enquanto esse header pode ficar comentado
-   //header("location: index.php");
 }
 
 $nome = $usu_obj->primeiroNome();
-
 $cellFormatado = $usu_obj->formataCell();
 
 ?>
-
 <!doctype html>
 <html>
 
@@ -37,6 +33,7 @@ $cellFormatado = $usu_obj->formataCell();
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="../dist/output.css" rel="stylesheet">
+   <title>Pro-Lixo</title>
    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
 
@@ -56,10 +53,7 @@ $cellFormatado = $usu_obj->formataCell();
                <a href="#" class="flex ms-2 md:me-24">
                   <img src="../assets/images/Logo-Pro-Lixo-Azul-Crop.png" class="h-8 me-3" alt="Logo" />
                </a>
-
-
             </div>
-
          </div>
       </div>
    </nav>
@@ -69,23 +63,6 @@ $cellFormatado = $usu_obj->formataCell();
          <ul class="space-y-2 font-medium">
             <li>
                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                  </svg>
-                  <span class="ms-3">Dashboard</span>
-               </a>
-            </li>
-            <!-- <li>
-               <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                     <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-                  </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Minhas Solicitações</span>                  
-               </a>
-            </li> -->
-            <li>
-               <a href="./mainSolicitante.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                      <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                   </svg>
@@ -112,31 +89,26 @@ $cellFormatado = $usu_obj->formataCell();
 
                   <div class="text-gray-900 font-bold text-xl mb-2">Bem vindo, <?php echo $nome; ?></div>
                   <div class="idade flex items-center justify-center lg:justify-center rounded-lg w-1/2 mx-auto">
-
                      <img class="w-1/2 h-1/2" src="<?php echo "../" . $usu_obj->usuIcone ?>" alt="Sua foto de Perfil">
-
                   </div>
-
                   <div class="mb-8 mt-5">
                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="w-full lg:w-2/2 shadow rounded-lg inline-block">
                            <label for="text" class="font-bold mb-2 text-sm text-gray-900 dark:text-white">Endereço:</label>
                            <p class="italic"><?php echo $usu_obj->usuEnd; ?></p>
                         </div>
-
                         <div class="w-full lg:w-2/2 h-20 shadow rounded-lg">
                            <label for="text" class="font-bold mb-2 text-sm  dark:text-white">Telefone:</label>
                            <p class="italic"><?php echo $cellFormatado; ?></p>
                         </div>
                      </div>
                   </div>
-
                </div>
             </div>
          </div>
       </div>
 
-      <div class="p-4  mt-5 mb-4 "> <!-- Div blocos duplos -->
+      <div class="p-4  mt-5 mb-4 ">
          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2  justify-center">
             <div class="flex items-center justify-center">
                <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
@@ -154,14 +126,9 @@ $cellFormatado = $usu_obj->formataCell();
                </div>
             </div>
 
-            <!-- -------------------- MODAL -------------------- -->
-
-            <!-- Main modal -->
             <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                <div class="relative p-4 w-full max-w-md max-h-full">
-                  <!-- Modal content -->
                   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                     <!-- Modal header -->
                      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                            Nova solicitação de coleta
@@ -173,7 +140,6 @@ $cellFormatado = $usu_obj->formataCell();
                            <span class="sr-only">Close modal</span>
                         </button>
                      </div>
-                     <!-- Modal body -->
                      <form method="POST" action="salvaSolicita.php" class="p-4 md:p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                            <div class="col-span-2 sm:col-span-1">
@@ -207,9 +173,6 @@ $cellFormatado = $usu_obj->formataCell();
                </div>
             </div>
 
-
-            <!-- -------------------- MODAL -------------------- -->
-
             <div class="flex items-center justify-center">
                <div class="flex flex-col items-center justify-center max-w-sm p-6 bg-white rounded-lg shadow-2xl sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                   <h6 class="mb-2 text-2xl font-bold text-gray-900">Manual e Informações</h6>
@@ -232,7 +195,7 @@ $cellFormatado = $usu_obj->formataCell();
       <footer class="bg-white border border-solid border-gray-400 items-center justify-center rounded-lg shadow m-4 dark:bg-bl-800 text-center">
          <div class="w-full mx-auto max-w-screen-xl p-4  lg:items-center md:flex md:items-center">
             <span class="text-sm text-black dark:text-gray-400 text-center font-semibold">
-               © 2024 <a href="https://flowbite.com/" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
+               © 2024 <a href="#" class="hover:underline font-semibold">Pro-Lixo / Fatec Guaratinguetá</a>. Todos os direitos reservados
             </span>
          </div>
       </footer>
@@ -250,10 +213,8 @@ $cellFormatado = $usu_obj->formataCell();
    </script>
 
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiJnJKpcL9tMRGfD9AGmPYZPmydig87g&libraries=places"></script>
-
    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
-   <!-- https://flowbite.com/docs/components/sidebar/ -->
 </body>
 
 </html>
